@@ -1,6 +1,7 @@
 {
     "files.associations": {
         "*.ejs": "html",
-        "iomanip": "cpp"
+        "iomanip": "cpp",
+        "vector": "cpp"
     }
 }
