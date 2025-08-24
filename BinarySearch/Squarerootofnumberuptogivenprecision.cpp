@@ -38,7 +38,6 @@ int main()
 {
     int n = 50;
     int p = 3;
-    cout << fixed << setprecision(p);
     cout << "squareRoot : " << squareRoot(n, p) << endl;
     return 0;
 }
