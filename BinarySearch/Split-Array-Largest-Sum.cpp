@@ -27,14 +27,14 @@ bool isPossible(vector<int> &nums, int k, int possible)
 }
 
 // Brute force solution
-int minTimeBrute(vector<int> &nums, int k)
+int splitArrayBrute(vector<int> &nums, int k)
 {
     if (nums.size() < k)
     {
         return -1;
     }
 
-    int low = *max_element(nums.begin(), nums.end());
+    int low = *min_element(nums.begin(), nums.end());
     int high = 0;
 
     for (auto num : nums)
@@ -53,7 +53,7 @@ int minTimeBrute(vector<int> &nums, int k)
 }
 
 // optimal solution
-int minTimeOptimal(vector<int> &nums, int k)
+int splitArrayOptimal(vector<int> &nums, int k)
 {
     if (nums.size() < k)
     {
@@ -84,10 +84,10 @@ int minTimeOptimal(vector<int> &nums, int k)
 }
 int main()
 {
-    vector<int> nums = {5, 10, 30, 20, 15};
-    int k = 3;
+    vector<int> nums = {7,2,5,10,8};
+    int k = 2;
 
-    cout << "min Time : " << minTimeBrute(nums, k) << endl;
-    cout << "min Time : " << minTimeOptimal(nums, k) << endl;
+    cout << "min Time : " << splitArrayBrute(nums, k) << endl;
+    cout << "min Time : " << splitArrayOptimal(nums, k) << endl;
     return 0;
 }

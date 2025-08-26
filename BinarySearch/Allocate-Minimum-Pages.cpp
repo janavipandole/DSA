@@ -33,7 +33,7 @@ int findPagesBrute(vector<int> &nums, int k)
     {
         return -1;
     }
-    int low = *min_element(nums.begin(), nums.end());
+    int low = *max_element(nums.begin(), nums.end());
     int high = 0;
 
     for (auto num : nums)
