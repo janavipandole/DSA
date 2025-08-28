@@ -2,19 +2,21 @@
 using namespace std;
 vector<int> subarraySum(vector<int> &nums, int target)
 {
-    int i = 0;
-    int sum = 0;
-    for (int j = 0; j < nums.size(); j++)
+    int start = 0, sum = 0;
+
+    for (int end = 0; end < nums.size(); ++end)
     {
-        sum += nums[j];
-        if (sum > target && i < j)
+        sum += nums[end];
+
+        // Shrink window from the left if sum exceeds target
+        while (sum > target && start < end)
         {
-            sum -= nums[i];
-            i++;
+            sum -= nums[start++];
         }
-        if (target == sum)
+
+        if (sum == target)
         {
-            return {i + 1, j + 1};
+            return {start + 1, end + 1}; // 1-based indexing
         }
     }
 
