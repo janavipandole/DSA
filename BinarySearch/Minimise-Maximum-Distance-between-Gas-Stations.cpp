@@ -1,5 +1,6 @@
 #include <iostream>
 using namespace std;
+
 // Brute force solution
 double minMaxDistBrute(vector<int> &stations, int k)
 {
