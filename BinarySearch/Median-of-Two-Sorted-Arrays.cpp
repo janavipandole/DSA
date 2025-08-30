@@ -126,17 +126,22 @@ double findMedianSortedArraysOptimal(vector<int> &nums1, vector<int> &nums2)
     // Handle edge cases where one array is empty
     if (n1 == 0)
     {
-        if (n2 % 2 == 0) return (nums2[n2 / 2 - 1] + nums2[n2 / 2]) / 2.0;
-        else return nums2[n2 / 2];
+        if (n2 % 2 == 0)
+            return (nums2[n2 / 2 - 1] + nums2[n2 / 2]) / 2.0;
+        else
+            return nums2[n2 / 2];
     }
     if (n2 == 0)
     {
-        if (n1 % 2 == 0) return (nums1[n1 / 2 - 1] + nums1[n1 / 2]) / 2.0;
-        else return nums1[n1 / 2];
+        if (n1 % 2 == 0)
+            return (nums1[n1 / 2 - 1] + nums1[n1 / 2]) / 2.0;
+        else
+            return nums1[n1 / 2];
     }
 
     // Ensure nums1 is the smaller array
-    if (n1 > n2) return findMedianSortedArraysOptimal(nums2, nums1);
+    if (n1 > n2)
+        return findMedianSortedArraysOptimal(nums2, nums1);
 
     int low = 0, high = n1;
     int total = n1 + n2;
@@ -154,11 +159,15 @@ double findMedianSortedArraysOptimal(vector<int> &nums1, vector<int> &nums2)
 
         if (l1 <= r2 && l2 <= r1)
         {
-            if (total % 2 == 0) return (max(l1, l2) + min(r1, r2)) / 2.0;
-            else return max(l1, l2);
+            if (total % 2 == 0)
+                return (max(l1, l2) + min(r1, r2)) / 2.0;
+            else
+                return max(l1, l2);
         }
-        else if (l1 > r2) high = mid1 - 1;
-        else low = mid1 + 1;
+        else if (l1 > r2)
+            high = mid1 - 1;
+        else
+            low = mid1 + 1;
     }
 
     return 0.0; // Should never reach here
