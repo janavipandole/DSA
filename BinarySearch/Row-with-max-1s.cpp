@@ -20,7 +20,7 @@ int rowWithMax1s(vector<vector<int>> &nums)
 }
 int main()
 {
-    vector<vector<int>> nums = {{0, 1, 1, 1}, {0, 0, 1, 1}, {1, 1, 1, 1}, {0, 0, 0, 0}};
-    cout << "rowWithMax1s : " << rowWithMax1s(nums) << endl;
+    vector<vector<int>> nums = {{1, 1, 1, 0}, {0, 0, 1, 1}, {1, 1, 1, 1}, {0, 0, 0, 0}};
+    cout << "row With Max 1s : " << rowWithMax1s(nums) << endl;
     return 0;
 }
