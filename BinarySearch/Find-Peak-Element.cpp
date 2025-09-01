@@ -23,7 +23,7 @@ vector<int> findPeakGridBrute(vector<vector<int>> &mat)
 }
 
 // Optimal solution
-int maxIndex(vector<vector<int>> &mat,int col,int n )
+int maxIndex(vector<vector<int>> &mat, int col, int n)
 {
     int index = -1;
     int maxElem = -1;
@@ -44,9 +44,9 @@ vector<int> findPeakGridOptimal(vector<vector<int>> &mat)
     while (low <= high)
     {
         int col = (low + high) / 2;
-        int row = maxIndex(mat,  col, n);
+        int row = maxIndex(mat, col, n);
         int left = col - 1 >= 0 ? mat[row][col - 1] : -1;
-        int right = col + 1 < mat[0].size() ? mat[row][col + 1] : -1;
+        int right = col + 1 < m ? mat[row][col + 1] : -1;
 
         if (mat[row][col] > left && mat[row][col] > right)
         {
@@ -66,7 +66,7 @@ vector<int> findPeakGridOptimal(vector<vector<int>> &mat)
 
 int main()
 {
-    vector<vector<int>> mat = {{70, 50, 40, 30, 20}, {00, 1, 2, 3, 4}};
+    vector<vector<int>> mat = {{14, 10}, {16, 20}};
     vector<int> nums = findPeakGridOptimal(mat);
     for (auto num : nums)
     {
