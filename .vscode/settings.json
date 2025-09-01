@@ -45,6 +45,11 @@
         "typeinfo": "cpp",
         "unordered_map": "cpp",
         "variant": "cpp",
-        "algorithm": "cpp"
+        "algorithm": "cpp",
+        "set": "cpp",
+        "unordered_set": "cpp",
+        "list": "cpp",
+        "map": "cpp",
+        "__tree": "cpp"
     }
 }

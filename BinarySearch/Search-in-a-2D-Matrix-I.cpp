@@ -18,7 +18,7 @@ bool searchMatrixBrute(vector<vector<int>> &nums, int target)
 // Better solution
 bool BS(vector<int> &arr, int target, int m)
 {
-    int low = 0, high = m - 1;
+    int low = 0, high = arr.size() - 1;
     while (low <= high)
     {
         int mid = (low + high) / 2;
@@ -37,10 +37,14 @@ bool BS(vector<int> &arr, int target, int m)
 }
 bool searchMatrixBetter(vector<vector<int>> &nums, int target)
 {
+    if (nums.empty() || nums[0].empty())
+    {
+        return false;
+    }
     int m = nums[0].size();
     for (int i = 0; i < nums.size(); i++)
     {
-        if (nums[i][0] <= target && nums[i][m - 1])
+        if (nums[i][0] <= target && target <= nums[i][m - 1])
         {
             return BS(nums[i], target, m);
         }
