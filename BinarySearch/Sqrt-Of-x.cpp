@@ -1,7 +1,22 @@
 #include <iostream>
 using namespace std;
 
-int mySqrt(int x)
+// Brtue force solutions
+int mySqrtBrtue(int x)
+{
+    int ans = 0;
+    for (int i = 1; i < x; i++)
+    {
+        if (i * i > x)
+        {
+            return ans;
+        }
+        ans = i;
+    }
+    return ans;
+}
+// Optimal solution
+int mySqrtOptimal(int x)
 {
     if (x == 0 || x == 1)
     {
@@ -35,6 +50,8 @@ int mySqrt(int x)
 
 int main()
 {
-    cout << "mySqrt : " << mySqrt(9) << endl;
+    cout << "mySqrt Brtue : " << mySqrtBrtue(28) << endl;
+    cout << "mySqrt Optimal : " << mySqrtOptimal(28) << endl;
+
     return 0;
 }
