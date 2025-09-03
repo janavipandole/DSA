@@ -16,7 +16,17 @@ int guess(int num)
     else if(n < num) return -1;
     else return 1;
 }
-int guessNumber(int n)
+// Brute force solution
+int guessNumberBrute(int n)
+{
+    int low = 1, high = n;
+    for(int i = low; i <= high; i++){
+        if (guess(i) == 0) return i;
+    }
+    return -1;
+}
+// Optimal solution
+int guessNumberOptimal(int n)
 {
     int low = 1, high = n;
     while (low <= high)
@@ -32,6 +42,7 @@ int guessNumber(int n)
 
 int main()
 {
-    cout << "guessNumber : " << guessNumber(10) << endl;
+    cout << "guessNumber : " << guessNumberBrute(10) << endl;
+    cout << "guessNumber : " << guessNumberOptimal(10) << endl;
     return 0;
 }
