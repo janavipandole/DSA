@@ -1,6 +1,6 @@
 #include <iostream>
 using namespace std;
-
+// Brute force solution
 vector<int> decimaToBinary(int num)
 {
     int n = num;
