@@ -17,7 +17,7 @@ string decimaToBinary(int num)
 }
 int main()
 {
-    int num = 14;
+    int num = 11;
     cout << "decima To Binary : " << decimaToBinary(num) << endl;
     return 0;
 }
