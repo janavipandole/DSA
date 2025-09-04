@@ -48,16 +48,9 @@ int replaceBitBrute(int n, int k)
     }
     return binaryToDecima(ans);
 }
-
-// Optimal solution
-int replaceBit(int n, int k)
-{
- return ;  
-}
 int main()
 {
     int n = 996 , k = 7;
     cout << "replace Bit : " << replaceBitBrute(n, k) << endl;
-    cout << "replace Bit : " << replaceBit(n, k) << endl;
     return 0;
 }
