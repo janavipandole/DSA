@@ -15,20 +15,20 @@ int hammingWeightInt(int n)
     }
     return cnt;
 }
-// Bit form Brute force soltion
-int hammingWeightBruteBit(int n)
+// Bit form optimal soltion
+int hammingWeightOptimalBit(int n)
 {
     int num = n;
     int cnt = 0;
-    while (num > 1)
+    while (num > 0)
     {
-        cnt += n & 1;
+        cnt += num & 1;
         num = num >> 1;
     }
     return cnt;
 }
-// Bit form optimal soltion
-int hammingWeightOptimalBit(int n)
+// Bit form Brute force soltion
+int hammingWeightBruteBit(int n)
 {
     int cnt = 0;
     int num = n;
