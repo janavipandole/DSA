@@ -47,12 +47,25 @@ int singleNumberIIOptimal(vector<int> &nums)
     }
     return nums[n - 1];
 }
+
+int singleNumberIIMostOptimal(vector<int> &nums)
+{
+    int ones = 0, twos = 0;
+    for (auto num : nums)
+    {
+        ones = ones ^ num & (~twos);
+        twos = twos ^ num & (~ones);
+    }
+    return ones;
+}
+
 int main()
 {
     vector<int> nums = {0, 0, 0, 1, 1, 1, 99};
     cout << "Single Number : " << singleNumberIIBrute(nums) << endl;
     cout << "Single Number : " << singleNumberIIBetter(nums) << endl;
     cout << "Single Number : " << singleNumberIIOptimal(nums) << endl;
+    cout << "Single Number : " << singleNumberIIMostOptimal(nums) << endl;
 
     return 0;
 }
