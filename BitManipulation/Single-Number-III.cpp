@@ -25,8 +25,7 @@ vector<int> singleNumberIIIOptimal(vector<int> &nums)
 {
     long long XOR = 0;
 
-    for (auto num : nums)
-        XOR ^= num;
+    for (auto num : nums) XOR ^= num;
 
     int rightMostBit = ((XOR & (XOR - 1)) ^ XOR);
     int bit1 = 0, bit2 = 0;
