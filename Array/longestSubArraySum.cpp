@@ -47,13 +47,10 @@ int subArraySumBetter(vector<int> &nums, int k)
     int maxLength = 0;
     int sum = 0;
     // {1, 2, 3, 1, 1, 0, 1, 0, 1};
+    m[0] = 0;
     for (int i = 0; i < nums.size(); i++)
     {
         sum += nums[i];
-        if (sum == k)
-        {
-            maxLength = max(maxLength, i + 1);
-        }
         int rem = sum - k;
 
         if (m.find(rem) != m.end())
@@ -61,7 +58,7 @@ int subArraySumBetter(vector<int> &nums, int k)
             int idx = i - m[rem];
             maxLength = max(maxLength, idx);
         }
-        // {{1,0}{3,1}{6,2}{7,3}{}...}
+
         if (m.find(sum) == m.end())
         {
             m[sum] = i;
@@ -69,7 +66,7 @@ int subArraySumBetter(vector<int> &nums, int k)
     }
     return maxLength;
 }
-
+// if array contain only 0 and postive digits
 int subArraySumOptimal(vector<int> &nums, int k)
 {
     int maxLength = 0;
