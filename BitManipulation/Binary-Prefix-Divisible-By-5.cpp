@@ -7,14 +7,7 @@ vector<bool> prefixesDivBy5(vector<int> &nums)
     for (int i = 0; i < nums.size(); i++)
     {
         num = (num * 2 + nums[i]) % 5;
-        if (num % 5 == 0)
-        {
-            result[i] = true;
-        }
-        else
-        {
-            result[i] = false;
-        }
+        result[i] = num == 0;
     }
     return result;
 }
