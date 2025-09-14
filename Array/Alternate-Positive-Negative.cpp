@@ -11,13 +11,14 @@ void rearrange(vector<int> &nums)
         else
             pos.push_back(num);
     }
+    for (int i = 0; i < min(neg.size(), pos.size()); i++)
+    {
+        nums[i * 2] = pos[i];
+        nums[i * 2 + 1] = neg[i];
+    }
     if (neg.size() < pos.size())
     {
-        for (int i = 0; i < neg.size(); i++)
-        {
-            nums[i * 2] = pos[i];
-            nums[i * 2 + 1] = neg[i];
-        }
+
         int index = neg.size() * 2;
         for (int i = neg.size(); i < pos.size(); i++)
         {
@@ -27,11 +28,6 @@ void rearrange(vector<int> &nums)
     }
     else
     {
-        for (int i = 0; i < pos.size(); i++)
-        {
-            nums[i * 2] = pos[i];
-            nums[i * 2 + 1] = neg[i];
-        }
         int index = pos.size() * 2;
         for (int i = pos.size(); i < neg.size(); i++)
         {
