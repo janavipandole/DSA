@@ -4,17 +4,15 @@ bool hasSameDigits(string s)
 {
     while (s.size() > 2)
     {
-        string newS = "";
+        string newS;
         for (int i = 0; i < s.size() - 1; i++)
         {
             int digit = (s[i] - '0' + s[i + 1] - '0') % 10;
             newS += (digit + '0');
         }
-        s = newS;
+        s.swap(newS);
     }
-    if (s[0] == s[1]) return true;
-
-    return false;
+    return s[0] == s[1];
 }
 int main()
 {
