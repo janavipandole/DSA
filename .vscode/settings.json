@@ -45,6 +45,7 @@
         "typeinfo": "cpp",
         "variant": "cpp",
         "algorithm": "cpp",
-        "map": "cpp"
+        "map": "cpp",
+        "set": "cpp"
     }
 }
