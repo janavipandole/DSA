@@ -34,6 +34,7 @@ void NGE(int n, vector<int> &nums)
 }
 int main()
 {
+    cout<<"Next Greater Element : "<<endl;
     int n;
     cin >> n;
     vector<int> nums(n);
