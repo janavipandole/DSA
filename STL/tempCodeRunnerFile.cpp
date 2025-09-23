@@ -1,0 +1,1 @@
+vector<bool> table(1e6 + 1, false);
