@@ -1,38 +1,42 @@
 #include <iostream>
 #include <vector>
 using namespace std;
-
-void sortAry(vector<int> &nums)
+class Solution
 {
-    int cnt0 = 0, cnt1 = 0;
-    for (int i = 0; i < nums.size(); i++)
+public:
+    void sortAry(vector<int> &nums)
     {
-        if (nums[i] == 0)
+        int cnt0 = 0, cnt1 = 0;
+        for (int i = 0; i < nums.size(); i++)
         {
-            cnt0++;
+            if (nums[i] == 0)
+            {
+                cnt0++;
+            }
+            else if (nums[i] == 1)
+            {
+                cnt1++;
+            }
         }
-        else if (nums[i] == 1)
+        for (int i = 0; i < cnt0; i++)
         {
-            cnt1++;
+            nums[i] = 0;
+        }
+        for (int i = cnt0; i < cnt0 + cnt1; i++)
+        {
+            nums[i] = 1;
+        }
+        for (int i = cnt0 + cnt1; i < nums.size(); i++)
+        {
+            nums[i] = 2;
         }
     }
-    for (int i = 0; i < cnt0; i++)
-    {
-        nums[i] = 0;
-    }
-    for (int i = cnt0; i < cnt0+cnt1; i++)
-    {
-        nums[i] = 1;
-    }
-    for (int i = cnt0+cnt1; i < nums.size(); i++)
-    {
-        nums[i] = 2;
-    }
-}
+};
 int main()
 {
+    Solution s;
     vector<int> nums = {0, 1, 2, 0, 1, 2, 1, 2, 0, 0, 0, 1};
-    sortAry(nums);
+    s.sortAry(nums);
     for (auto num : nums)
     {
         cout << num << " ";

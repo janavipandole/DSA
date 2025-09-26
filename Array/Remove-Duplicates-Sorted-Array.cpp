@@ -1,5 +1,8 @@
 #include <iostream>
 using namespace std;
+class Solution
+{
+public:
 vector<int> removeDuplicates(vector<int> &arr)
 {
     vector<int> ans;
@@ -13,11 +16,13 @@ vector<int> removeDuplicates(vector<int> &arr)
     }
     return ans;
 }
+}
 int main()
 {
+    Solution s;
     vector<int> nums = {1,  2,  2,  3, 4,  5, 6, 6};
     cout << "Remove Duplicates Sorted Array : " << endl;
-    vector<int> ans = removeDuplicates(nums);
+    vector<int> ans = s.removeDuplicates(nums);
     for (auto num : ans)
     {
         cout << num << " ";

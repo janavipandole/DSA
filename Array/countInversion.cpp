@@ -1,7 +1,9 @@
 #include <iostream>
 #include <vector>
 using namespace std;
-
+class Solution
+{
+public:
 int merge(vector<int> &nums, int low, int mid, int high)
 {
     int i = low, j = mid + 1;
@@ -59,10 +61,11 @@ int countInversion(vector<int> &nums, int n)
 {
     return mergeSort(nums, 0, n - 1);
 }
-
+};
 int main()
 {
+    Solution s;
     vector<int> nums = {5, 3, 2, 4, 1};
-    cout << "count Inversion : " << countInversion(nums, nums.size()) << endl;
+    cout << "count Inversion : " << s.countInversion(nums, nums.size()) << endl;
     return 0;
 }

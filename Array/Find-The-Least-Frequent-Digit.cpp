@@ -1,37 +1,42 @@
 #include <iostream>
 #include <unordered_map>
 using namespace std;
-int getLeastFrequentDigit(int n)
+class Solution
 {
-    unordered_map<int, int> m;
-
-    while (n > 0)
+public:
+    int getLeastFrequentDigit(int n)
     {
-        int digit = n % 10;
-        m[digit] += 1;
-        n /= 10;
-    }
-    int LeastFrequentDigit = INT_MAX;
-    int Freq = INT_MAX;
+        unordered_map<int, int> m;
 
-    for (auto val : m)
-    {
-        if (val.second < Freq)
+        while (n > 0)
         {
-            Freq = val.second;
-            LeastFrequentDigit = val.first;
+            int digit = n % 10;
+            m[digit] += 1;
+            n /= 10;
         }
-        if (val.second == Freq && LeastFrequentDigit > val.first)
+        int LeastFrequentDigit = INT_MAX;
+        int Freq = INT_MAX;
+
+        for (auto val : m)
         {
-            Freq = val.second;
-            LeastFrequentDigit = val.first;
+            if (val.second < Freq)
+            {
+                Freq = val.second;
+                LeastFrequentDigit = val.first;
+            }
+            if (val.second == Freq && LeastFrequentDigit > val.first)
+            {
+                Freq = val.second;
+                LeastFrequentDigit = val.first;
+            }
         }
+        return LeastFrequentDigit;
     }
-    return LeastFrequentDigit;
-}
+};
 int main()
 {
+    Solution s;
     int n = 723344511;
-    cout << "Find The Least Frequent Digit : " << getLeastFrequentDigit(n) << endl;
+    cout << "Find The Least Frequent Digit : " << s.getLeastFrequentDigit(n) << endl;
     return 0;
 }

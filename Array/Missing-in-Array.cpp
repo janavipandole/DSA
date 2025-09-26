@@ -1,21 +1,25 @@
 #include <iostream>
 using namespace std;
-int missingNum(vector<int> &nums)
+class Solution
 {
-    int ans = 0;
-    int n = nums.size();
-    for (int i = 0; i < nums.size(); i++)
+public:
+    int missingNum(vector<int> &nums)
     {
-        ans ^= nums[i];
-        ans ^= i + 1;
+        int ans = 0;
+        int n = nums.size();
+        for (int i = 0; i < nums.size(); i++)
+        {
+            ans ^= nums[i];
+            ans ^= i + 1;
+        }
+        ans ^= n + 1;
+        return ans;
     }
-    ans ^= n + 1;
-    return ans;
-}
+};
 int main()
 {
+    Solution s;
     vector<int> nums = {1, 2, 3, 5};
-
-    cout << "missing Num " << missingNum(nums) << endl;
+    cout << "missing Num " << s.missingNum(nums) << endl;
     return 0;
 }

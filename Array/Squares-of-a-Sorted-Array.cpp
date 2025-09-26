@@ -1,20 +1,28 @@
 #include <iostream>
 using namespace std;
-vector<int> sortedSquares(vector<int> &nums)
+class Solution
 {
-    vector<int> ans;
-    for (auto num : nums)
+public:
+    vector<int> sortedSquares(vector<int> &nums)
     {
-        ans.push_back(num * num);
+        vector<int> ans;
+        for (auto num : nums)
+        {
+            ans.push_back(num * num);
+        }
+        sort(ans.begin(), ans.end());
+        return ans;
     }
-    sort(ans.begin(), ans.end());
-    return ans;
-}
+};
 int main()
 {
+    Solution s;
     vector<int> nums = {-4, -1, 0, 3, 10};
-    vector<int> ans = sortedSquares(nums);
-    for(auto num : ans) cout<<num<<" ";
-    cout<<endl;
+    vector<int> ans = s.sortedSquares(nums);
+    for (auto num : ans)
+    {
+        cout << num << " ";
+    }
+    cout << endl;
     return 0;
 }

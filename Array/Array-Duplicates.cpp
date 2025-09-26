@@ -1,29 +1,33 @@
 #include <iostream>
 using namespace std;
-vector<int> findDuplicates(vector<int> &nums)
+class Solutions
 {
-    unordered_map<int, int> mpp;
-    vector<int> ans;
-    for (auto num : nums)
+public:
+    vector<int> findDuplicates(vector<int> &nums)
     {
-        mpp[num]++;
-    }
-
-    for (auto(val) : mpp)
-    {
-        if (val.second == 2)
+        unordered_map<int, int> mpp;
+        vector<int> ans;
+        for (auto num : nums)
         {
-            ans.push_back(val.first);
+            mpp[num]++;
         }
-    }
-    sort(ans.begin(), ans.end());
-    return ans;
-}
 
+        for (auto(val) : mpp)
+        {
+            if (val.second == 2)
+            {
+                ans.push_back(val.first);
+            }
+        }
+        sort(ans.begin(), ans.end());
+        return ans;
+    }
+};
 int main()
 {
+    Solutions s;
     vector<int> nums = {2, 3, 1, 2, 3};
-    vector<int> ans = findDuplicates(nums);
+    vector<int> ans = s.findDuplicates(nums);
     cout << "findDuplicates : ";
     for (auto num : ans)
     {

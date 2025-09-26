@@ -1,6 +1,9 @@
 #include <iostream>
 #include <set>
 using namespace std;
+class Solution
+{
+public:
 vector<int> maxKDistinct(vector<int> &nums, int k)
 {
     vector<int> ans;
@@ -19,11 +22,13 @@ vector<int> maxKDistinct(vector<int> &nums, int k)
 
     return ans;
 }
+};
 int main()
 {
+    Solution s;
     vector<int> nums = {84, 93, 100, 77, 90};
     int k = 3;
-    vector<int> ans = maxKDistinct(nums, k);
+    vector<int> ans = s.maxKDistinct(nums, k);
     for (auto num : ans)
     {
         cout << num << " ";

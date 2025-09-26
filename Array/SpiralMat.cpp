@@ -1,48 +1,52 @@
 #include <iostream>
 #include <vector>
 using namespace std;
-
-vector<int> SpiralTraMat(vector<vector<int>> mat)
+class Solution
 {
-    vector<int> ans;
-    int top = 0, bottom = mat[0].size() - 1;
-    int left = 0, right = mat.size() - 1;
-
-    while (top <= bottom && left <= right)
+public:
+    vector<int> SpiralTraMat(vector<vector<int>> mat)
     {
-        for (int j = left; j <= right; j++)
-        {
-            ans.push_back(mat[top][j]);
-        }
-        top++;
+        vector<int> ans;
+        int top = 0, bottom = mat[0].size() - 1;
+        int left = 0, right = mat.size() - 1;
 
-        for (int i = top; i <= bottom; i++)
+        while (top <= bottom && left <= right)
         {
-            ans.push_back(mat[i][right]);
-        }
-        right--;
+            for (int j = left; j <= right; j++)
+            {
+                ans.push_back(mat[top][j]);
+            }
+            top++;
 
-        if (top <= bottom)
-        {
-            for (int j = right; j >= left; j--)
+            for (int i = top; i <= bottom; i++)
             {
-                ans.push_back(mat[bottom][j]);
+                ans.push_back(mat[i][right]);
             }
-            bottom--;
-        }
-        if (left <= right)
-        {
-            for (int i = bottom; i >= top; i--)
+            right--;
+
+            if (top <= bottom)
             {
-                ans.push_back(mat[i][left]);
+                for (int j = right; j >= left; j--)
+                {
+                    ans.push_back(mat[bottom][j]);
+                }
+                bottom--;
             }
-            left++;
+            if (left <= right)
+            {
+                for (int i = bottom; i >= top; i--)
+                {
+                    ans.push_back(mat[i][left]);
+                }
+                left++;
+            }
         }
+        return ans;
     }
-    return ans;
-}
+};
 int main()
 {
+    Solution s;
     vector<vector<int>> mat = {{1, 2, 3, 4, 5, 6},
                                {7, 8, 9, 10, 11, 12},
                                {13, 14, 15, 16, 17, 18},
@@ -50,7 +54,7 @@ int main()
                                {25, 26, 27, 28, 29, 30},
                                {31, 32, 33, 34, 35, 36}};
 
-    vector<int> ans = SpiralTraMat(mat);
+    vector<int> ans = s.SpiralTraMat(mat);
     for (auto val : ans)
     {
         cout << val << " ";

@@ -2,66 +2,60 @@
 #include <vector>
 #include <set>
 using namespace std;
-
-bool checkSorted(vector<int> &nums)
+class Solution
 {
-    for (int i = 1; i < nums.size(); i++)
+public:
+    bool checkSorted(vector<int> &nums)
     {
-        if (nums[i - 1] > nums[i])
+        for (int i = 1; i < nums.size(); i++)
         {
-            return false;
+            if (nums[i - 1] > nums[i])
+            {
+                return false;
+            }
         }
+        return true;
     }
-    return true;
-}
 
-int removeDuplicateBrute(vector<int> &nums)
-{
-    set<int> s;
-    for (int i = 1; i < nums.size(); i++)
+    int removeDuplicateBrute(vector<int> &nums)
     {
-        s.insert(nums[i]);
-    }
-    int index = 0;
-    for (auto i : s)
-    {
-        nums[index] = i;
-        index++;
-    }
-    return index;
-}
-
-int removeDuplicateOptimal(vector<int> &nums)
-{
-    int k = 0;
-    for (int i = 1; i < nums.size(); i++)
-    {
-        cout<<nums[i]<<" ";
-        if (nums[i - 1] != nums[i])
+        set<int> s;
+        for (int i = 1; i < nums.size(); i++)
         {
-            nums[k] = nums[i];
-            k++;
+            s.insert(nums[i]);
         }
+        int index = 0;
+        for (auto i : s)
+        {
+            nums[index] = i;
+            index++;
+        }
+        return index;
     }
-    cout << endl;
-    return k + 1;
-}
+
+    int removeDuplicateOptimal(vector<int> &nums)
+    {
+        int k = 0;
+        for (int i = 1; i < nums.size(); i++)
+        {
+            if (nums[i - 1] != nums[i])
+            {
+                nums[k] = nums[i];
+                k++;
+            }
+        }
+        return k + 1;
+    }
+};
 int main()
 {
+    Solution s;
     vector<int> nums = {1, 2, 3, 1, 5, 6, 7, 8};
-    vector<int> nums1 = {
-        1,
-        1,
-        2,
-        2,
-        2,
-        3,
-        3,
-        3,
-        3,
-    };
+    vector<int> nums1 = {1, 1, 2, 2, 2, 3, 3, 3, 3};
 
-    cout << "is array sorted : ? " << checkSorted(nums) << endl;
-    cout << removeDuplicateBrute(nums1) << endl;
+    cout << "is array sorted :  " << s.checkSorted(nums) << endl;
+    cout << s.removeDuplicateBrute(nums1) << endl;
+    cout << s.removeDuplicateOptimal(nums1) << endl;
+
     return 0;
 }

@@ -2,43 +2,46 @@
 #include <vector>
 #include <math.h>
 using namespace std;
-
-int maxGap(vector<int> &nums)
+class Solution
 {
-    sort(nums.begin(), nums.end());
-    int maxi = 0;
-    for (int i = 1; i < nums.size(); i++)
+public:
+    int maxGap(vector<int> &nums)
     {
-        maxi = max(maxi, nums[i] - nums[i - 1]);
+        sort(nums.begin(), nums.end());
+        int maxi = 0;
+        for (int i = 1; i < nums.size(); i++)
+        {
+            maxi = max(maxi, nums[i] - nums[i - 1]);
+        }
+        return maxi;
     }
-    return maxi;
-}
 
-vector<int> findArray(vector<int> &nums)
-{
-    int xor1 = 0;
-    vector<int> ans;
-    for (auto num : nums)
+    vector<int> findArray(vector<int> &nums)
     {
-        if (ans.size() == 0)
+        int xor1 = 0;
+        vector<int> ans;
+        for (auto num : nums)
         {
-            ans.push_back(xor1 ^ num);
+            if (ans.size() == 0)
+            {
+                ans.push_back(xor1 ^ num);
+            }
+            else
+            {
+                xor1 = xor1 ^ ans.back();
+                ans.push_back(xor1 ^ num);
+            }
         }
-        else
-        {
-            xor1 = xor1 ^ ans.back();
-            ans.push_back(xor1 ^ num);
-        }
+        return ans;
     }
-    return ans;
-}
-
+};
 int main()
 {
+    Solution s;
     vector<int> nums = {5, 2, 0, 3, 1};
-    // cout << "max Gap : " << maxGap(nums) << endl;
+    cout << "max Gap : " << s.maxGap(nums) << endl;
 
-    vector<int> ans = findArray(nums);
+    vector<int> ans = s.findArray(nums);
     for (auto num : ans)
     {
         cout << num << " ";

@@ -2,66 +2,69 @@
 #include <vector>
 #include <math.h>
 using namespace std;
-
-bool valid(vector<int> &temp, int maxElem, int k)
+class Solution
 {
-    int minElem = temp[0];
-    return (maxElem - minElem <= k);
-}
-int partitionArrayBrute(vector<int> &nums, int k)
-{
-    sort(nums.begin(), nums.end());
-    vector<int> temp;
-    vector<vector<int>> ans;
-
-    for (int i = 0; i < nums.size(); i++)
+public:
+    bool valid(vector<int> &temp, int maxElem, int k)
     {
-        if (temp.empty())
+        int minElem = temp[0];
+        return (maxElem - minElem <= k);
+    }
+    int partitionArrayBrute(vector<int> &nums, int k)
+    {
+        sort(nums.begin(), nums.end());
+        vector<int> temp;
+        vector<vector<int>> ans;
+
+        for (int i = 0; i < nums.size(); i++)
         {
-            temp.push_back(nums[i]);
+            if (temp.empty())
+            {
+                temp.push_back(nums[i]);
+            }
+            else if (valid(temp, nums[i], k))
+            {
+                temp.push_back(nums[i]);
+            }
+            else
+            {
+                ans.push_back(temp);
+                temp.clear();
+                temp.push_back(nums[i]);
+            }
         }
-        else if (valid(temp, nums[i], k))
-        {
-            temp.push_back(nums[i]);
-        }
-        else
+        if (!temp.empty())
         {
             ans.push_back(temp);
-            temp.clear();
-            temp.push_back(nums[i]);
         }
+        return ans.size();
     }
-    if (!temp.empty())
+
+    int partitionArrayOptimal(vector<int> &nums, int k)
     {
-        ans.push_back(temp);
-    }
-    return ans.size();
-}
+        sort(nums.begin(), nums.end());
 
-int partitionArrayOptimal(vector<int> &nums, int k)
-{
-    sort(nums.begin(), nums.end());
-
-    int cnt = 0;
-    int i = 0;
-    int n = nums.size();
-    while (i < n)
-    {
-        int mini = nums[i];
-        cnt++;
-
-        while (i < n && nums[i] - mini <= k)
+        int cnt = 0;
+        int i = 0;
+        int n = nums.size();
+        while (i < n)
         {
-            i++;
-        }
-    }
-    return cnt;
-}
+            int mini = nums[i];
+            cnt++;
 
+            while (i < n && nums[i] - mini <= k)
+            {
+                i++;
+            }
+        }
+        return cnt;
+    }
+};
 int main()
 {
+    Solution s;
     vector<int> nums = {3, 6, 1, 2, 5};
     int k = 2;
-    cout << "partition Array : " << partitionArrayBrute(nums, k) << endl;
+    cout << "partition Array : " << s.partitionArrayBrute(nums, k) << endl;
     return 0;
 }

@@ -1,7 +1,9 @@
 #include <iostream>
 #include <vector>
 using namespace std;
-
+class Solution
+{
+public:
 vector<int> rearrangeArrayBrute(vector<int> &nums)
 {
     vector<int> positive;
@@ -91,11 +93,12 @@ vector<int> rearrangeArrayVarityTwo(vector<int> &nums)
     }
     return ans;
 }
-
+};
 int main()
 {
+    Solution s;
     vector<int> nums = {3, 1, -2, -5, 2, 4};
-    vector<int> result = rearrangeArrayVarityTwo(nums);
+    vector<int> result = s.rearrangeArrayVarityTwo(nums);
 
     cout << "Rearranged array: ";
     for (int num : result)

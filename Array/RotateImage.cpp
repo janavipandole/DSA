@@ -1,56 +1,57 @@
 #include <iostream>
 #include <vector>
-#include<math.h>
+#include <math.h>
 using namespace std;
-
-void rotateImageBrute(vector<vector<int>> &nums)
+class Solution
 {
-    int n = nums.size();
-    int ans[n][n];
-
-    for (int i = 0; i < n; i++)
+public:
+    void rotateImageBrute(vector<vector<int>> &nums)
     {
-        for (int j = 0; j < n; j++)
+        int n = nums.size();
+        int ans[n][n];
+
+        for (int i = 0; i < n; i++)
         {
-            ans[j][n - i - 1] = nums[i][j];
+            for (int j = 0; j < n; j++)
+            {
+                ans[j][n - i - 1] = nums[i][j];
+            }
         }
-    }
 
-    for (int i = 0; i < n; i++)
-    {
-        for (int j = 0; j < n; j++)
+        for (int i = 0; i < n; i++)
         {
-            nums[i][j] = ans[i][j];
+            for (int j = 0; j < n; j++)
+            {
+                nums[i][j] = ans[i][j];
+            }
         }
+        return;
     }
-    return;
-}
 
-void rotateImageOptimal(vector<vector<int>> &nums)
-{
-    int n = nums.size();
-
-    for (int i = 0; i < n-1; i++)
+    void rotateImageOptimal(vector<vector<int>> &nums)
     {
-        for (int j = i+1; j < n; j++)
+        int n = nums.size();
+
+        for (int i = 0; i < n - 1; i++)
         {
-           swap(nums[i][j],nums[j][i]);
+            for (int j = i + 1; j < n; j++)
+            {
+                swap(nums[i][j], nums[j][i]);
+            }
         }
-    }
 
-    for (int i = 0; i < n; i++)
-    {
-        reverse(nums[i].begin(),nums[i].end());
+        for (int i = 0; i < n; i++)
+        {
+            reverse(nums[i].begin(), nums[i].end());
+        }
+        return;
     }
-    return;
-} 
-
+};
 int main()
 {
-    vector<vector<int>> nums = {{1, 2, 3},
-                                {4, 5, 6},
-                                {7, 8, 9}};
-    rotateImageOptimal(nums);
+    Solution s;
+    vector<vector<int>> nums = {{1, 2, 3}, {4, 5, 6}, {7, 8, 9}};
+    s.rotateImageOptimal(nums);
     for (auto val : nums)
     {
         for (auto num : val)

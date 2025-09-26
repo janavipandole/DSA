@@ -1,53 +1,57 @@
 #include <iostream>
 #include <vector>
 using namespace std;
-
-vector<vector<int>> SpiralTraMat(int n)
+class Solution
 {
-    vector<vector<int>> ans(n, vector<int>(n, 1));
-    int top = 0, bottom = n - 1;
-    int left = 0, right = n - 1;
-    int cnt = 1;
-    while (top <= bottom && left <= right)
+public:
+    vector<vector<int>> SpiralTraMat(int n)
     {
-        for (int j = left; j <= right; j++)
+        vector<vector<int>> ans(n, vector<int>(n, 1));
+        int top = 0, bottom = n - 1;
+        int left = 0, right = n - 1;
+        int cnt = 1;
+        while (top <= bottom && left <= right)
         {
-            ans[top][j] = cnt;
-            cnt++;
-        }
-        top++;
-
-        for (int i = top; i <= bottom; i++)
-        {
-            ans[i][right] = cnt;
-            cnt++;
-        }
-        right--;
-
-        if (top <= bottom)
-        {
-            for (int j = right; j >= left; j--)
+            for (int j = left; j <= right; j++)
             {
-                ans[bottom][j] = cnt;
+                ans[top][j] = cnt;
                 cnt++;
             }
-            bottom--;
-        }
-        if (left <= right)
-        {
-            for (int i = bottom; i >= top; i--)
+            top++;
+
+            for (int i = top; i <= bottom; i++)
             {
-                ans[i][left] = cnt;
+                ans[i][right] = cnt;
                 cnt++;
             }
-            left++;
+            right--;
+
+            if (top <= bottom)
+            {
+                for (int j = right; j >= left; j--)
+                {
+                    ans[bottom][j] = cnt;
+                    cnt++;
+                }
+                bottom--;
+            }
+            if (left <= right)
+            {
+                for (int i = bottom; i >= top; i--)
+                {
+                    ans[i][left] = cnt;
+                    cnt++;
+                }
+                left++;
+            }
         }
+        return ans;
     }
-    return ans;
-}
+};
 int main()
 {
-    vector<vector<int>> ans = SpiralTraMat(3);
+    Solution s;
+    vector<vector<int>> ans = s.SpiralTraMat(3);
 
     for (auto val : ans)
     {

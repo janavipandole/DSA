@@ -1,97 +1,100 @@
 #include <iostream>
 #include <vector>
 using namespace std;
-
-vector<vector<int>> flipImg(vector<vector<int>> &nums)
+class Solution
 {
-    int n = nums.size();
-    vector<vector<int>> ans(n, vector<int>(n));
-
-    for (int i = 0; i < n; i++)
+public:
+    vector<vector<int>> flipImg(vector<vector<int>> &nums)
     {
-        reverse(nums[i].begin(), nums[i].end());
-    }
+        int n = nums.size();
+        vector<vector<int>> ans(n, vector<int>(n));
 
-    for (int i = 0; i < n; i++)
-    {
-        for (int j = 0; j < n; j++)
+        for (int i = 0; i < n; i++)
         {
-            if (nums[i][j] == 1)
+            reverse(nums[i].begin(), nums[i].end());
+        }
+
+        for (int i = 0; i < n; i++)
+        {
+            for (int j = 0; j < n; j++)
             {
-                ans[i][j] = 0;
-            }
-            else
-            {
-                ans[i][j] = 1;
+                if (nums[i][j] == 1)
+                {
+                    ans[i][j] = 0;
+                }
+                else
+                {
+                    ans[i][j] = 1;
+                }
             }
         }
+        return ans;
     }
-    return ans;
-}
 
-int countNegativesBrute(vector<vector<int>> &nums)
-{
-    int cnt = 0;
-    int n = nums.size();
-    int m = nums[0].size();
-
-    for (int i = n - 1; i >= 0; i--)
+    int countNegativesBrute(vector<vector<int>> &nums)
     {
-        for (int j = m - 1; j >= 0; j--)
+        int cnt = 0;
+        int n = nums.size();
+        int m = nums[0].size();
+
+        for (int i = n - 1; i >= 0; i--)
         {
-            if (nums[i][j] >= 0)
+            for (int j = m - 1; j >= 0; j--)
             {
-                break;
-            }
-            else
-            {
-                cnt++;
+                if (nums[i][j] >= 0)
+                {
+                    break;
+                }
+                else
+                {
+                    cnt++;
+                }
             }
         }
+        return cnt;
     }
-    return cnt;
-}
 
-int countNegativesOptimal(vector<vector<int>> &nums)
-{
-    int cnt = 0;
-    int n = nums.size();
-    int m = nums[0].size();
-
-    for (int i = n - 1; i >= 0; i--)
+    int countNegativesOptimal(vector<vector<int>> &nums)
     {
-        int row = i;
-        for (int j = 0; j < n; j++)
+        int cnt = 0;
+        int n = nums.size();
+        int m = nums[0].size();
+
+        for (int i = n - 1; i >= 0; i--)
         {
-            if(nums[row][j] >= 0){
-                break;
-            }else{
-                cnt += row - j+1;
+            int row = i;
+            for (int j = 0; j < n; j++)
+            {
+                if (nums[row][j] >= 0)
+                {
+                    break;
+                }
+                else
+                {
+                    cnt += row - j + 1;
+                }
             }
         }
+        return cnt;
     }
-    return cnt;
-}
-
+};
 int main()
 {
-    vector<vector<int>> nums = {{4, 3, 2, -1},
-                                {3, 2, 1, -1},
-                                {1, 1, -1, -2},
-                                {-1, -1, -2, -3}};
-    cout << "count Negatives : " << countNegativesOptimal(nums);
+    Solution s;
+    vector<vector<int>> nums1 = {{4, 3, 2, -1}, {3, 2, 1, -1}, {1, 1, -1, -2}, {-1, -1, -2, -3}};
+    cout << "count Negatives : " << s.countNegativesOptimal(nums1);
     cout << endl;
 
-    // vector<vector<int>> nums = {{1, 1, 0}, {1, 0, 1}, {0, 0, 1}};
-    // vector<vector<int>> ans = flipImg(nums);
+    vector<vector<int>> nums2 = {{1, 1, 0}, {1, 0, 1}, {0, 0, 1}};
+    vector<vector<int>> ans = s.flipImg(nums2);
 
-    // for (auto values : ans)
-    // {
-    //     for (auto val : values)
-    //     {
-    //         cout << val << " ";
-    //     }
-    //     cout << endl;
-    // }
+    for (auto values : ans)
+    {
+        for (auto val : values)
+        {
+            cout << val << " ";
+        }
+        cout << endl;
+    }
     return 0;
 }

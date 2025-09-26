@@ -1,7 +1,9 @@
 #include <iostream>
 #include <vector>
 using namespace std;
-
+class Solution
+{
+public:
 int maxSubArySum(const vector<int> &arr)
 {
     int maxSum = 0;
@@ -17,10 +19,11 @@ int maxSubArySum(const vector<int> &arr)
     }
     return maxSum;
 }
-
+};
 int main()
 {
+    Solution s;
     vector<int> arr = {1, -2, 3, 4, -5, 6};
-    cout << "Maximum subarray sum is: " <<  maxSubArySum(arr) << endl;
+    cout << "Maximum subarray sum is: " <<  s.maxSubArySum(arr) << endl;
     return 0;
 }

@@ -2,42 +2,61 @@
 #include <vector>
 #include <set>
 using namespace std;
-
-vector<int> unionInArrayBrute(vector<int> nums1, vector<int> nums2)
+class Solution
 {
-    set<int> s;
-    for (int i = 0, j = 0; i < nums1.size() || j < nums2.size(); i++, j++)
+public:
+    vector<int> unionInArrayBrute(vector<int> nums1, vector<int> nums2)
     {
-        s.insert(nums1[i]);
-        s.insert(nums2[j]);
+        set<int> s;
+        for (int i = 0, j = 0; i < nums1.size() || j < nums2.size(); i++, j++)
+        {
+            s.insert(nums1[i]);
+            s.insert(nums2[j]);
+        }
+        int i = 0;
+        nums1.resize(s.size());
+        for (int val : s)
+        {
+            nums1[i] = val;
+            i++;
+        }
+        return nums1;
     }
-    int i = 0;
-    nums1.resize(s.size());
-    for (int val : s)
+    vector<int> unionInArrayOptimal(vector<int> nums1, vector<int> nums2)
     {
-        nums1[i] = val;
-        i++;
-    }
-    return nums1;
-}
-vector<int> unionInArrayOptimal(vector<int> nums1, vector<int> nums2)
-{
-    vector<int> ans;
-    int i = 0;
-    int j = 0;
+        vector<int> ans;
+        int i = 0;
+        int j = 0;
 
-    while (i < nums1.size() && j < nums2.size())
-    {
-        if (nums1[i] != nums2[j])
+        while (i < nums1.size() && j < nums2.size())
+        {
+            if (nums1[i] != nums2[j])
+            {
+                if (ans.size() == 0 || ans.back() != nums1[i])
+                {
+                    ans.push_back(nums1[i]);
+                }
+
+                i++;
+            }
+            else
+            {
+                if (ans.size() == 0 || ans.back() != nums2[j])
+                {
+                    ans.push_back(nums2[j]);
+                }
+                j++;
+            }
+        }
+        while (i < nums1.size())
         {
             if (ans.size() == 0 || ans.back() != nums1[i])
             {
                 ans.push_back(nums1[i]);
             }
-
             i++;
         }
-        else
+        while (j < nums2.size())
         {
             if (ans.size() == 0 || ans.back() != nums2[j])
             {
@@ -45,77 +64,62 @@ vector<int> unionInArrayOptimal(vector<int> nums1, vector<int> nums2)
             }
             j++;
         }
+        return ans;
     }
-    while (i < nums1.size())
-    {
-        if (ans.size() == 0 || ans.back() != nums1[i])
-        {
-            ans.push_back(nums1[i]);
-        }
-        i++;
-    }
-    while (j < nums2.size())
-    {
-        if (ans.size() == 0 || ans.back() != nums2[j])
-        {
-            ans.push_back(nums2[j]);
-        }
-        j++;
-    }
-    return ans;
-}
 
-vector<int> intersetionInArrayBrute(vector<int> nums1, vector<int> nums2)
-{
-    vector<int> visited(nums2.size(), 0);
-    vector<int> ans;
-    for (int i = 0; i < nums1.size(); i++)
+    vector<int> intersetionInArrayBrute(vector<int> nums1, vector<int> nums2)
     {
-
-        for (int j = 0; j < nums2.size(); j++)
+        vector<int> visited(nums2.size(), 0);
+        vector<int> ans;
+        for (int i = 0; i < nums1.size(); i++)
         {
-            if (nums1[i] == nums2[j] && visited[j] == 0)
+
+            for (int j = 0; j < nums2.size(); j++)
             {
-                ans.push_back(nums1[i]);
-                visited[j] = -1;
-                break;
+                if (nums1[i] == nums2[j] && visited[j] == 0)
+                {
+                    ans.push_back(nums1[i]);
+                    visited[j] = -1;
+                    break;
+                }
+                if (nums2[j] > nums1[i])
+                    break;
             }
-            if (nums2[j] > nums1[i])
-                break;
         }
+        return ans;
     }
-    return ans;
-}
-vector<int> intersetionInArrayOptimal(vector<int> num1, vector<int> num2)
-{
-    vector<int> ans;
-    int i = 0, j = 0;
-
-    while (i < num1.size() && j < num2.size())
+    vector<int> intersetionInArrayOptimal(vector<int> num1, vector<int> num2)
     {
-        if (num1[i] < num2[j])
+        vector<int> ans;
+        int i = 0, j = 0;
+
+        while (i < num1.size() && j < num2.size())
         {
-            i++;
+            if (num1[i] < num2[j])
+            {
+                i++;
+            }
+            else if (num1[i] > num2[j])
+            {
+                j++;
+            }
+            else
+            {
+                ans.push_back(num1[i]);
+                i++;
+                j++;
+            }
         }
-        else if (num1[i] > num2[j])
-        {
-            j++;
-        }
-        else
-        {
-            ans.push_back(num1[i]);
-            i++;
-            j++;
-        }
+        return ans;
     }
-    return ans;
-}
+};
 int main()
 {
+    Solution s;
     vector<int> nums1 = {1, 1, 2, 3};
     vector<int> nums2 = {2, 3, 4, 5, 9};
 
-    vector<int> ans = intersetionInArrayOptimal(nums1, nums2);
+    vector<int> ans = s.intersetionInArrayOptimal(nums1, nums2);
     for (int num : ans)
     {
         cout << num << " ";

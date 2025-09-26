@@ -1,7 +1,9 @@
 #include <iostream>
 #include <vector>
 using namespace std;
-
+class Solution
+{
+public:
 int findMaxConsecutiveOnes(vector<int> &nums)
 {
     int maxCnt = 0, cnt = 0;
@@ -49,10 +51,12 @@ int numberApperOnceAndOtherTwiceOptimal(vector<int> &nums)
     }
     return xor1;
 }
+};
 
 int main()
 {
+    Solution s;
     vector<int> nums = {1, 1, 2, 3, 3, 4, 4};
-    cout << "find number Apper Once And Other Twice : " << numberApperOnceAndOtherTwiceBrute(nums) << endl;
+    cout << "find number Apper Once And Other Twice : " << s.numberApperOnceAndOtherTwiceBrute(nums) << endl;
     return 0;
 }

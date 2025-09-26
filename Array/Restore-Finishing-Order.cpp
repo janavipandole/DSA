@@ -1,30 +1,35 @@
 #include <iostream>
-#include <unordered_map>
+#include <map>
 using namespace std;
-vector<int> recoverOrder(vector<int> &order, vector<int> &friends)
+class Solution
 {
-    unordered_map<int, int> mpp;
-    for (int i = 0; i < friends.size(); i++)
+public:
+    vector<int> recoverOrder(vector<int> &order, vector<int> &friends)
     {
-        mpp[friends[i]] = i;
-    }
-    vector<int> ans;
-
-    for (int i = 0; i < order.size(); i++)
-    {
-        if (mpp.find(order[i]) != mpp.end())
+        unordered_map<int, int> mpp;
+        for (int i = 0; i < friends.size(); i++)
         {
-            ans.push_back(order[i]);
+            mpp[friends[i]] = i;
         }
+        vector<int> ans;
+
+        for (int i = 0; i < order.size(); i++)
+        {
+            if (mpp.find(order[i]) != mpp.end())
+            {
+                ans.push_back(order[i]);
+            }
+        }
+        return ans;
     }
-    return ans;
-}
+};
 int main()
 {
+    Solution s;
     vector<int> order = {3, 1, 2, 5, 4};
     vector<int> friends = {1, 3, 4};
     cout << "Restore Finishing Order : " << endl;
-    vector<int> ans = recoverOrder(order, friends);
+    vector<int> ans = s.recoverOrder(order, friends);
     for (auto num : ans)
     {
         cout << num << " ";

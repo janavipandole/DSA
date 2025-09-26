@@ -2,7 +2,9 @@
 #include <vector>
 #include <unordered_set>
 using namespace std;
-
+class Solution
+{
+public:
 int countSubarraysWithXORBrute(const vector<int> &arr, int x)
 {
     int count = 0;
@@ -67,12 +69,14 @@ int countSubarraysWithXOROptimal(vector<int> nums, int x)
     }
     return cnt;
 }
+};
 int main()
 {
+    Solution s;
     vector<int> nums = {4, 2, 2, 6, 4};
     int x = 6;
-    cout << "count Sub arrays With XOR : " << countSubarraysWithXORBrute(nums, x) << endl;
-    cout << "count Sub arrays With XOR : " << countSubarraysWithXORBetter(nums, x) << endl;
-    cout << "count Sub arrays With XOR : " << countSubarraysWithXOROptimal(nums, x) << endl;
+    cout << "count Sub arrays With XOR : " << s.countSubarraysWithXORBrute(nums, x) << endl;
+    cout << "count Sub arrays With XOR : " << s.countSubarraysWithXORBetter(nums, x) << endl;
+    cout << "count Sub arrays With XOR : " << s.countSubarraysWithXOROptimal(nums, x) << endl;
     return 0;
 }

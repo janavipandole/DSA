@@ -1,5 +1,8 @@
 #include <iostream>
 using namespace std;
+class Solution
+{
+public:
 double findMaxAverage(vector<int> &nums, int k)
 {
     int sum = 0;
@@ -16,10 +19,12 @@ double findMaxAverage(vector<int> &nums, int k)
     double ans = (static_cast<double>(maxSum) / k);
     return ans;
 }
+}
 int main()
 {
+    Solution s;
     vector<int> nums = {7, 4, 5, 8, 8, 3, 9, 8, 7, 6};
     int k = 7;
-    cout << "Maximum Average Subarray I : " << findMaxAverage(nums, k) << endl;
+    cout << "Maximum Average Subarray I : " << s.findMaxAverage(nums, k) << endl;
     return 0;
 }

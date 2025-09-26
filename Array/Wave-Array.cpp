@@ -1,16 +1,21 @@
 #include <iostream>
 using namespace std;
-void sortInWave(vector<int> &nums)
+class Solution
 {
-    for (int i = 0; i < nums.size()+1; i += 2)
+public:
+    void sortInWave(vector<int> &nums)
     {
-        swap(nums[i], nums[i + 1]);
+        for (int i = 0; i < nums.size() + 1; i += 2)
+        {
+            swap(nums[i], nums[i + 1]);
+        }
     }
-}
+};
 int main()
 {
+    Solution s;
     vector<int> nums = {2, 4, 7, 8, 9, 10};
-    sortInWave(nums);
+    s.sortInWave(nums);
     for (auto num : nums)
     {
         cout << num << " ";

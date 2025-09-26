@@ -1,5 +1,8 @@
 #include <iostream>
 using namespace std;
+class Solution
+{
+public:
 // Brute force solution
 vector<int> getFinalStateBrute(vector<int> &nums, int k, int multiplier)
 {
@@ -41,11 +44,13 @@ vector<int> getFinalStateOptimal(vector<int> &nums, int k, int multiplier)
     }
     return nums;
 }
+};
 int main()
 {
+    Solution s;
     vector<int> nums = {2, 1, 3, 5, 6};
     int k = 5, multiplier = 2;
-    vector<int> ans = getFinalStateOptimal(nums, k, multiplier);
+    vector<int> ans = s.getFinalStateOptimal(nums, k, multiplier);
     for (auto num : ans)
     {
         cout << num << " ";

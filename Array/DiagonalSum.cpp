@@ -1,84 +1,87 @@
 #include <iostream>
 #include <vector>
 using namespace std;
-
-int diaSumBrute(vector<vector<int>> array)
+class Solution
 {
-    int n = array.size();
-    int sum = 0;
-    for (int i = 0; i < n; i++)
+public:
+    int diaSumBrute(vector<vector<int>> array)
     {
-        for (int j = 0; j < n; j++)
+        int n = array.size();
+        int sum = 0;
+        for (int i = 0; i < n; i++)
         {
-            if (i == j)
+            for (int j = 0; j < n; j++)
             {
-                sum += array[i][j];
+                if (i == j)
+                {
+                    sum += array[i][j];
+                }
+                else if (j == n - i - 1)
+                {
+                    sum += array[i][j];
+                }
             }
-            else if (j == n - i - 1)
+        }
+        return sum;
+    }
+
+    int diaSumOptimal(vector<vector<int>> array)
+    {
+        int sum = 0;
+
+        int n = array.size();
+        for (int i = 0; i < n; i++)
+        {
+            sum += array[i][i];
+            if (i != n - i - 1)
             {
-                sum += array[i][j];
+                sum += array[i][n - 1 - i];
             }
         }
+        return sum;
     }
-    return sum;
-}
 
-int diaSumOptimal(vector<vector<int>> array)
-{
-    int sum = 0;
-
-    int n = array.size();
-    for (int i = 0; i < n; i++)
+    bool isPrime(int digit)
     {
-        sum += array[i][i];
-        if (i != n - i - 1)
+        for (int i = 2; i < digit; i++)
         {
-            sum += array[i][n - 1 - i];
+            if (digit % i == 0)
+            {
+                return false;
+            }
         }
+        return true;
     }
-    return sum;
-}
 
-bool isPrime(int digit)
-{
-    for (int i = 2; i < digit; i++)
+    int largestPrimeOnDia(vector<vector<int>> nums)
     {
-        if (digit % i == 0)
+        int n = nums.size();
+        int largestPrime = 0;
+        for (int i = 0; i < n; i++)
         {
-            return false;
-        }
-    }
-    return true;
-}
+            if (isPrime(nums[i][i]))
+            {
+                largestPrime = max(largestPrime, nums[i][i]);
+            }
 
-int largestPrimeOnDia(vector<vector<int>> nums)
-{
-    int n = nums.size();
-    int largestPrime = 0;
-    for (int i = 0; i < n; i++)
-    {
-        if (isPrime(nums[i][i]))
-        {
-            largestPrime = max(largestPrime, nums[i][i]);
+            if (i != n - i - 1 && isPrime(nums[i][n - 1 - i]))
+            {
+                largestPrime = max(largestPrime, nums[i][n - 1 - i]);
+            }
         }
-
-        if (i != n - i - 1 && isPrime(nums[i][n - 1 - i]))
-        {
-            largestPrime = max(largestPrime, nums[i][n - 1 - i]);
-        }
+        return largestPrime;
     }
-    return largestPrime;
-}
+};
 int main()
 {
+    Solution s;
     vector<vector<int>> nums1 = {{1, 2, 3, 4}, {5, 6, 7, 8}, {9, 10, 11, 12}, {13, 14, 15, 16}};
-
     vector<vector<int>> nums2 = {{1, 2, 3}, {4, 5, 6}, {7, 8, 9}};
-    cout << "diaSumBrute sum : " << diaSumBrute(nums1) << endl;
-    cout << "diaSumBrute sum :" << diaSumBrute(nums2) << endl;
-    cout << "diaSumOptimal sum : " << diaSumOptimal(nums1) << endl;
-    cout << "diaSumOptimal sum : " << diaSumOptimal(nums2) << endl;
-    cout << "largest Prime present on diagonal : " << largestPrimeOnDia(nums1) << endl;
-    cout << "largest Prime present on diagonal : " << largestPrimeOnDia(nums2) << endl;
+    cout << "diaSumBrute sum : " << s.diaSumBrute(nums1) << endl;
+    cout << "diaSumBrute sum :" << s.diaSumBrute(nums2) << endl;
+    cout << "diaSumOptimal sum : " << s.diaSumOptimal(nums1) << endl;
+    cout << "diaSumOptimal sum : " << s.diaSumOptimal(nums2) << endl;
+    cout << "largest Prime present on diagonal : " << s.largestPrimeOnDia(nums1) << endl;
+    cout << "largest Prime present on diagonal : " << s.largestPrimeOnDia(nums2) << endl;
     return 0;
 }
