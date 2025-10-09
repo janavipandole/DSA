@@ -29,18 +29,16 @@ public:
     // Optimal solution
     int lengthOfLongestSubstring_Optimal(string s)
     {
-        unordered_map<char, int> charMap;
+        vector<int> hash(256, -1);
         int maxLen = 0;
-        int st = 0;
-        for (int end = 0; end < s.size(); end++)
-        {
-            if (charMap.find(s[end]) != charMap.end())
-            {
-                st = max(st, charMap[s[end]] + 1);
+        int st = 0, end = 0, n = s.size();
+        while (end < n){
+            if(hash[s[end]] != -1){
+                if(hash[s[end]] >= st) st = hash[s[end]] + 1;
             }
-            charMap[s[end]] = end;
-
             maxLen = max(maxLen, end - st + 1);
+            hash[s[end]] = end;
+            end++;
         }
         return maxLen;
     }
@@ -48,7 +46,7 @@ public:
 int main()
 {
     Solution s;
-    string str = "abcabcbb";
+    string str = "au";
     cout << "Longest Substring Without Repeating Characters : " << s.lengthOfLongestSubstring_Brute(str) << endl;
     cout << "Longest Substring Without Repeating Characters : " << s.lengthOfLongestSubstring_Optimal(str) << endl;
 
