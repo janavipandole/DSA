@@ -20,8 +20,8 @@ public:
         return maxLen;
     }
 
-    //Optimal force solution
-    int longestOnes_Optimal(vector<int> &nums, int k)
+    //Better solution
+    int longestOnes_Better(vector<int> &nums, int k)
     {
         int maxLen = 0, start = 0, cntZero = 0;
         for(int end = 0; end < nums.size(); end++){
@@ -35,6 +35,23 @@ public:
         }
         return maxLen;
     }
+
+    //Optimal solution
+    int longestOnes_Optimal(vector<int> &nums, int k)
+    {
+        int maxLen = 0, start = 0, cntZero = 0,end = 0;
+        while(end< nums.size()){
+            if(nums[end] == 0) cntZero++;
+
+            if(cntZero > k){
+                if(nums[start] == 0) cntZero--;
+                start++; 
+            }
+            if(cntZero <= k)  maxLen = max(maxLen, end - start + 1);
+            end++;
+        }
+        return maxLen; 
+    }
 };
 int main()
 {
@@ -42,6 +59,7 @@ int main()
     vector<int> nums = {1, 1, 1, 0, 0, 0, 1, 1, 1, 1, 0};
     int k = 2;
     cout<<"Max Consecutive Ones III : "<<s.longestOnes_Brute(nums, k)<<endl;
+    cout<<"Max Consecutive Ones III : "<<s.longestOnes_Better(nums, k)<<endl;
     cout<<"Max Consecutive Ones III : "<<s.longestOnes_Optimal(nums, k)<<endl;
 
     return 0;
