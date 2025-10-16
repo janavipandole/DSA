@@ -22,6 +22,7 @@ public:
         }
         return maxLen;
     }
+    //Better Approch
     int characterReplacement_Better(string s, int k)
     {
         int maxLen = 0, st = 0, end = 0, maxFreq = 0;
