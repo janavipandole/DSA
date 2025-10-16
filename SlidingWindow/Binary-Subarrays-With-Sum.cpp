@@ -20,7 +20,7 @@ public:
         }
         return cnt;
     }
-    // Better Approch
+    // Optimal Approch
     int lessThenEqualToGoal(vector<int> &nums, int goal)
     {
         if(goal < 0) return 0;
