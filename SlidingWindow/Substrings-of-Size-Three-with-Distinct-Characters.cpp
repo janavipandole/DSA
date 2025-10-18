@@ -13,11 +13,9 @@ public:
             for (int j = i; j < s.size(); j++)
             {
 
-                if (ch.find(s[j]) != ch.end() || ch.size() > 3)
-                    break;
+                if (ch.find(s[j]) != ch.end() || ch.size() > 3) break;
                 ch.insert(s[j]);
-                if (ch.size() == 3)
-                    count++;
+                if (ch.size() == 3)count++;
             }
         }
         return count;
