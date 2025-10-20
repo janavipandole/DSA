@@ -28,11 +28,11 @@ public:
         int cnt = 0, end = 0, st = 0, n = nums.size(), sum = 0;
         while (end < n)
         {
-            sum += nums[end];
+            sum += nums[end]%2;
 
             while (sum > goal && st <= end)
             {
-                sum -= nums[st];
+                sum -= nums[st]%2;
                 st++;
             }
 
@@ -44,11 +44,6 @@ public:
     }
     int numberOfSubarrays_Optimal(vector<int> &nums, int k)
     {
-        for(int i = 0; i < nums.size(); i++){
-            if(nums[i] % 2 != 0) nums[i] = 1;
-            else nums[i] = 0;
-        }
-
         return helper(nums,k) - helper(nums, k-1);
     }
 };
