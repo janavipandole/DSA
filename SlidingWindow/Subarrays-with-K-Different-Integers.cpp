@@ -38,7 +38,7 @@ public:
                 if (s[nums[st]] == 0) s.erase(nums[st]);
                 st++;
             }
-            if (s.size() <= k) cnt += end - st + 1;
+            cnt += end - st + 1;
 
             end++;
         }
