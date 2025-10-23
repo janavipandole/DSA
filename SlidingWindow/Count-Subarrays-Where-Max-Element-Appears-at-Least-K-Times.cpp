@@ -41,6 +41,6 @@ int main()
     Solution s;
     vector<int> nums = {1, 3, 2, 3, 3};
     int k = 2;
-    cout << "Count Subarrays Where Max Element Appears at Least K Times : " << s.countSubarrays(nums, k) << endl;
+    cout << "Count Subarrays Where Max Element Appears at Least K Times : " << s.countSubarrays_Brute(nums, k) << endl;
     return 0;
 }
