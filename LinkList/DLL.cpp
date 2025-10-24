@@ -1,64 +1,79 @@
-#include<iostream>
+#include <iostream>
 using namespace std;
 
-class Node{
+class Node
+{
 public:
     int data;
-    Node* next;
-    Node* prev;
+    Node *next;
+    Node *prev;
 
-    Node(int val){
+    Node(int val)
+    {
         data = val;
         next = prev = NULL;
     }
 };
 
-class DoublyList{
+class DoublyList
+{
 private:
-    Node* head;
-    Node* tail;
+    Node *head;
+    Node *tail;
 
-public: 
-    DoublyList(){
+public:
+    DoublyList()
+    {
         head = tail = NULL;
     }
-    void push_front(int val){
-        Node* newNode = new Node(val);
-        
-        if(head == NULL){
+    void push_front(int val)
+    {
+        Node *newNode = new Node(val);
+
+        if (head == NULL)
+        {
             head = newNode;
             tail = newNode;
-        }else{
+        }
+        else
+        {
             newNode->next = head;
             head->prev = newNode;
             head = newNode;
         }
     }
 
-    void push_back(int val){
-        Node* newNode = new Node(val);
-        if(head == NULL){
+    void push_back(int val)
+    {
+        Node *newNode = new Node(val);
+        if (head == NULL)
+        {
             tail = head = newNode;
-        }else{
+        }
+        else
+        {
             newNode->prev = tail;
             tail->next = newNode;
             tail = newNode;
         }
     }
 
-    void pop_front(){
-        if(head == NULL){
-            cout<<"empty !!";
+    void pop_front()
+    {
+        if (head == NULL)
+        {
+            cout << "empty !!";
             return;
         }
-        if(head == tail){
+        if (head == tail)
+        {
             head = tail = NULL;
             delete head;
             delete tail;
             return;
         }
 
-        Node* temp = head;
+        Node *temp = head;
 
         head = head->next;
         head->prev = NULL;
@@ -66,19 +81,22 @@ public:
         delete temp;
     }
 
-    void pop_back(){
-        if(head == NULL){
-            cout<<"empty !!";
+    void pop_back()
+    {
+        if (head == NULL)
+        {
+            cout << "empty !!";
             return;
         }
-        if(head == tail){
+        if (head == tail)
+        {
             head = tail = NULL;
             delete head;
             delete tail;
             return;
         }
 
-        Node* temp = tail;
+        Node *temp = tail;
 
         tail = tail->prev;
         tail->next = NULL;
@@ -86,19 +104,21 @@ public:
         delete temp;
     }
 
-    void printDll(){
-        Node* temp = head;
+    void printDll()
+    {
+        Node *temp = head;
 
-        while(temp != NULL){
-            cout<<temp->data<<" <=> ";
+        while (temp != NULL)
+        {
+            cout << temp->data << " <=> ";
             temp = temp->next;
         }
-        cout<<"NULL\n";
+        cout << "NULL\n";
     }
-
 };
 
-int main(){
+int main()
+{
     DoublyList DLL;
     DLL.push_back(1);
     DLL.push_back(2);
