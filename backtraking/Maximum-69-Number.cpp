@@ -1,7 +1,8 @@
 #include <iostream>
 #include <vector>
 using namespace std;
-
+class Solution {
+public:
 int maximum69NumberBruteForce(int num)
 {
     int maximumNumber = num;
@@ -43,10 +44,12 @@ int maximum69NumberOptimal(int num){
     }
     return stoi(newNum);
 }
-
+};
 int main()
 {
-    cout << "maximum Number : " << maximum69NumberOptimal(9669);
-    cout << endl;
+    Solution s;
+    cout << "Maximum 69 Number : " << s.maximum69NumberBruteForce(9669)<<endl;
+    cout << "Maximum 69 Number : " << s.maximum69NumberBruteForce(9669)<<endl;
+
     return 0;
 }

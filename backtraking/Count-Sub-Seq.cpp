@@ -25,6 +25,6 @@ int main()
     vector<int> nums = {1, 2, 1,0};
     int k = 3;
 
-    cout << "Count : " << printOneSubSeq(nums, k, 0)<<endl;
+    cout << "Print One Sub Seq : " << printOneSubSeq(nums, k, 0)<<endl;
     return 0;
 }

@@ -17,6 +17,6 @@ string largestGoodInteger(string num)
 int main()
 {
     string num = "6777133339";
-    cout << "largest Good Integer : " << largestGoodInteger(num) << endl;
+    cout << "Largest Good Integer : " << largestGoodInteger(num) << endl;
     return 0;
 }

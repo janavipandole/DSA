@@ -127,26 +127,26 @@ int nthFibonachi(int n)
 
 int main()
 {
-    // printName("Janavi", 0);
-    // cout << endl;
-    // print1toN(1, 10);
-    // cout << endl;
-    // printNto1(10);
-    // cout << endl;
-    // print1toNBacktraking(5);
-    // cout << endl;
-    // printNto1Backtraking(10);
-    // cout << endl;
-    // sumOfNParameters(5, 0);
-    // cout << endl;
-    // cout << sumOfN(5) << endl;
-    // cout << factorialOfN(6) << endl;
-    // vector<int> nums = {1, 2, 3, 4, 5, 6};
-    // revrseArray(nums);
-    // for (auto num : nums)
-    //     cout << num << " ";
-    // cout << endl;
-    // cout<<isPalindrom("janavi")<<endl;
-    // cout<<nthFibonachi(2)<<endl;
+    printName("Janavi", 0);
+    cout << endl;
+    print1toN(1, 10);
+    cout << endl;
+    printNto1(10);
+    cout << endl;
+    print1toNBacktraking(5);
+    cout << endl;
+    printNto1Backtraking(10);
+    cout << endl;
+    sumOfNParameters(5, 0);
+    cout << endl;
+    cout << sumOfN(5) << endl;
+    cout << factorialOfN(6) << endl;
+    vector<int> nums = {1, 2, 3, 4, 5, 6};
+    revrseArray(nums);
+    for (auto num : nums)
+        cout << num << " ";
+    cout << endl;
+    cout<<isPalindrom("janavi")<<endl;
+    cout<<nthFibonachi(2)<<endl;
     return 0;
 }
