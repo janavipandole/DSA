@@ -55,7 +55,5 @@ int main()
     int k = 2;
     cout << "Count Number of Nice Subarrays : " << s.numberOfSubarrays_Brute(nums, k) << endl;
     cout << "Count Number of Nice Subarrays : " << s.numberOfSubarrays_Optimal(nums, k) << endl;
-
-
     return 0;
 }
