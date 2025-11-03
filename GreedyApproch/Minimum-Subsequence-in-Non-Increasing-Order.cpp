@@ -18,12 +18,10 @@ public:
 
         for (int i = 0; i < nums.size(); i++)
         {
-            if (sum >= newSum)
-            {
-                newSum += nums[i];
-                sum -= nums[i];
-                ans.push_back(nums[i]);
-            }
+            newSum += nums[i];
+            sum -= nums[i];
+            ans.push_back(nums[i]);
+            if (newSum > sum) break;
         }
         return ans;
     }
