@@ -3,6 +3,31 @@ using namespace std;
 class Solution
 {
 public:
+    int minPlatform_Brute(vector<int> &arr, vector<int> &dep)
+    {
+        if (arr.size() == 0)
+        {
+            return 0;
+        }
+        int platform = 0;
+        int n = arr.size();
+
+        for (int i = 0; i < n; i++)
+        {
+            int cnt = 1;
+            for (int j = i + 1; j < n; j++)
+            {
+                if (arr[i] <= dep[j] && arr[j] <= dep[i])
+                {
+                    cnt++;
+                }
+            }
+            platform = max(platform, cnt);
+        }
+
+        return platform;
+    }
+
     int minPlatform_Better(vector<int> &arr, vector<int> &dep)
     {
         if (arr.size() == 0)
@@ -45,17 +70,20 @@ public:
 
         int platform = 1, cnt = 0, i = 0, j = 0;
 
-        while(i < n && j < n){
-            if(arr[i] <= dep[j]){
+        while (i < n && j < n)
+        {
+            if (arr[i] <= dep[j])
+            {
                 cnt++;
                 i++;
-            }else{
+            }
+            else
+            {
                 cnt--;
                 j++;
             }
             platform = max(platform, cnt);
         }
-
 
         return platform;
     }
@@ -66,6 +94,7 @@ int main()
     Solution s;
     vector<int> arr = {2112, 258, 1645, 1608, 2144};
     vector<int> dep = {2307, 1738, 1714, 1907, 2235};
+    cout << "Minimum number of platforms required in a railway station : " << s.minPlatform_Brute(arr, dep) << endl;
     cout << "Minimum number of platforms required in a railway station : " << s.minPlatform_Better(arr, dep) << endl;
     cout << "Minimum number of platforms required in a railway station : " << s.minPlatform_Optimal(arr, dep) << endl;
 
