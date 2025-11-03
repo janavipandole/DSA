@@ -48,10 +48,8 @@ public:
         for (int i = 0; i < times.size(); i++)
         {
             platform = max(platform, cnt);
-            if (times[i].second == 'A')
-                cnt++;
-            else
-                cnt--;
+            if (times[i].second == 'A') cnt++;
+            else cnt--;
         }
 
         return platform;
