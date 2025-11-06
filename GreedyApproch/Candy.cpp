@@ -15,10 +15,7 @@ public:
             {
                 left[i] = left[i - 1] + 1;
             }
-            else
-            {
-                left[i] = 1;
-            }
+           
         }
 
         for (int i = n - 2; i >= 0; i--)
@@ -26,10 +23,6 @@ public:
             if (ratings[i] > ratings[i + 1])
             {
                 right[i] = right[i + 1] + 1;
-            }
-            else
-            {
-                right[i] = 1;
             }
         }
 
@@ -51,10 +44,6 @@ public:
             if (ratings[i] > ratings[i - 1])
             {
                 left[i] = left[i - 1] + 1;
-            }
-            else
-            {
-                left[i] = 1;
             }
         }
         sum = left[n - 1];
