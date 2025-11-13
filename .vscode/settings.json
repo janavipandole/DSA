@@ -51,7 +51,8 @@
         "__tree": "cpp",
         "forward_list": "cpp",
         "list": "cpp",
-        "regex": "cpp"
+        "regex": "cpp",
+        "valarray": "cpp"
     },
     "C_Cpp.errorSquiggles": "disabled"
 }
