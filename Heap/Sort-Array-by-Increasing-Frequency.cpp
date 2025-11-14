@@ -3,40 +3,18 @@ using namespace std;
 class Solution
 {
 public:
-    static bool cmp(pair<int, int> &a, pair<int, int> &b)
-    {
-
-        if (a.second != b.second)
-            return a.second < b.second;
-        return a.first > b.first;
-    }
     vector<int> frequencySort(vector<int> &nums)
     {
-        vector<int> ans(nums.size());
-        unordered_map<int, int> mpp;
-        vector<pair<int, int>> v;
+        unordered_map<int, int> freq;
 
-        for (int num : nums)
-        {
-            mpp[num]++;
-        }
+        for (int n : nums)freq[n]++;
 
-        for (auto &val : mpp)
+        sort(nums.begin(), nums.end(), [&](int a, int b)
         {
-            v.push_back({val.second, val.first});
-        }
-
-        sort(v.begin(), v.end(), cmp);
-        int index = 0;
-        for (int i = 0; i < v.size(); i++)
-        {
-            for (int j = 0; j < v[i].first; j++)
-            {
-                ans[index] = v[i].second;
-                index++;
-            }
-        }
-        return ans;
+            if (freq[a] == freq[b]) return a > b;    
+            return freq[a] < freq[b]; 
+        });
+        return nums;
     }
 };
 int main()
