@@ -52,7 +52,8 @@
         "forward_list": "cpp",
         "list": "cpp",
         "regex": "cpp",
-        "valarray": "cpp"
+        "valarray": "cpp",
+        "span": "cpp"
     },
     "C_Cpp.errorSquiggles": "disabled"
 }
