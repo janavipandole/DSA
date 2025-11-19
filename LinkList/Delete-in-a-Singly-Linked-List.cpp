@@ -51,7 +51,8 @@ public:
 
     Node *deleteNode(Node *head, int x)
     {
-        if (head == nullptr)return head;
+        if (head == nullptr)
+            return head;
 
         Node *temp = head;
         if (x == 1)
@@ -61,22 +62,27 @@ public:
             return head;
         }
 
-        for (int i = 1; i < x - 1 && temp != nullptr; i++)
+        int cnt = 0;
+        Node *prev = nullptr;
+        while (temp != nullptr)
         {
+            cnt++;
+            if (cnt == x)
+            {
+                prev->next = temp->next;
+                free(temp);
+                break;
+            }
+            prev = temp;
             temp = temp->next;
         }
-        if (!temp || !temp->next) return head;
-
-        Node *nodeDelete = temp->next;
-        temp->next = temp->next->next;
-        delete nodeDelete;
         return head;
     }
 };
 int main()
 {
     List lst;
-    cout<<"Delete in a Singly Linked List : "<<endl;
+
     lst.push_front(5);
     lst.push_front(4);
     lst.push_front(3);
@@ -84,7 +90,7 @@ int main()
     lst.push_front(1);
 
     lst.printLL(); // 1 2 3 4 5
-
+    cout << "Delete in a Singly Linked List : " << endl;
     lst.deleteNode(lst.head, 3);
 
     lst.printLL(); // 1 2 4 5
