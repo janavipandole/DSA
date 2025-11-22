@@ -54,6 +54,7 @@ public:
         if (nextNode) nextNode->prev = prevNode;
 
         delete temp;
+
         return head;
     }
 
@@ -74,10 +75,12 @@ public:
     {
         Node *newNode = new Node(val);
 
-        if (!head) return newNode;
+        if (!head)
+            return newNode;
 
         Node *temp = head;
-        while (temp->next) temp = temp->next;
+        while (temp->next)
+            temp = temp->next;
 
         temp->next = newNode;
         newNode->prev = temp;
@@ -88,7 +91,7 @@ public:
 int main()
 {
     Node *head = NULL;
-    cout<<"Delete in a Doubly Linked List : "<<endl;
+    cout << "Delete in a Doubly Linked List : " << endl;
     Solution obj;
     head = obj.insertEnd(head, 1);
     head = obj.insertEnd(head, 2);
@@ -109,8 +112,6 @@ int main()
 
     cout << "After deletion: ";
     obj.printList(head);
-
-    return 0;
 
     return 0;
 }
