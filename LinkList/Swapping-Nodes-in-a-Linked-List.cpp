@@ -60,7 +60,7 @@ public:
         second = second->next;
     }
 
-    std::swap(first->data, second->data);
+    swap(first->data, second->data);
 
     return head;
     }
