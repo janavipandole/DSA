@@ -10,8 +10,7 @@ int minOperations(vector<int> &nums, int k)
 
     for (auto num : nums)
     {
-        if (num >= k)
-            minOper++;
+        if (num >= k)  minOper++;
     }
     return n - minOper;
 }
