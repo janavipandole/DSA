@@ -18,47 +18,30 @@ public:
 class solution
 {
 public:
-    ListNode *reverseList(ListNode *head)
+    ListNode *insertionSortList(ListNode *head)
     {
-        ListNode *prev = nullptr;
-        ListNode *curr = head;
-        ListNode *next = curr->next;
-
-        while (curr != nullptr)
-        {
-            next = curr->next;
-            curr->next = prev;
-            prev = curr;
-            curr = next;
-        }
-        return prev;
-    }
-
-    ListNode *removeNodes(ListNode *head)
-    {
-        head = reverseList(head);
-        int maxi = 0;
+        vector<int> nums;
 
         ListNode *temp = head;
-        ListNode *prev = nullptr;
-
-        while (temp != nullptr)
+        while (temp)
         {
-            if (temp->val >= maxi)
-            {
-                maxi = temp->val;
-                prev = temp;
-                temp = temp->next;
-            }
-            else
-            {
-                prev->next = temp->next;
-                temp = prev->next;
-            }
+            nums.push_back(temp->val);
+            temp = temp->next;
         }
-        return reverseList(head);
-    }
 
+        sort(nums.begin(), nums.end());
+
+        temp = head;
+        int i = 0;
+
+        while (temp)
+        {
+            temp->val = nums[i];
+            i++;
+            temp = temp->next;
+        }
+        return head;
+    }
     ListNode *insertEnd(ListNode *head, int val)
     {
         ListNode *newNode = new ListNode(val);
@@ -99,14 +82,13 @@ int main()
     head = s.insertEnd(head, 3);
     head = s.insertEnd(head, 8);
 
-    cout << "Remove Nodes From Linked List : " << endl;
+    cout << "Insertion Sort Linked List : " << endl;
 
     cout << "Original Linked List: ";
     s.printList(head);
 
-    cout << "After remove Nodes From Linked List: ";
-    
-    head = s.removeNodes(head);
+    cout << "After Insertion Sort List  ";
+    head = s.insertionSortList(head);
     s.printList(head);
 
     return 0;

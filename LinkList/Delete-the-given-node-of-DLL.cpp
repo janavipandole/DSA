@@ -69,12 +69,12 @@ int main()
     Solution obj;
     head = obj.insertEnd(head, 1);
     head = obj.insertEnd(head, 2);
-    // head = obj.insertEnd(head, 3);
-    // head = obj.insertEnd(head, 4);
-    // head = obj.insertEnd(head, 5);
-    // head = obj.insertEnd(head, 6);
-    // head = obj.insertEnd(head, 7);
-    // head = obj.insertEnd(head, 8);
+    head = obj.insertEnd(head, 3);
+    head = obj.insertEnd(head, 4);
+    head = obj.insertEnd(head, 5);
+    head = obj.insertEnd(head, 6);
+    head = obj.insertEnd(head, 7);
+    head = obj.insertEnd(head, 8);
     cout << "Original DLL: ";
     obj.printList(head);
 
