@@ -23,7 +23,7 @@ private:
 
 public:
     DoublyList()
-    {
+    { 
         head = tail = NULL;
     }
     void push_front(int val)
