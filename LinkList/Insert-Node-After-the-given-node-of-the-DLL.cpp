@@ -77,7 +77,7 @@ public:
 int main()
 {
     DoublyList DLL;
-    cout << "Insert Node Befor the given node of the DLL : " << endl;
+    cout << "Insert Node After the given node of the DLL : " << endl;
     DLL.head = DLL.InsertAfterTheLastNode(DLL.head, 1);
     DLL.head = DLL.InsertAfterTheLastNode(DLL.head, 2);
     DLL.head = DLL.InsertAfterTheLastNode(DLL.head, 3);
