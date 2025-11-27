@@ -2,12 +2,11 @@
 #include <vector>
 using namespace std;
 
-class ListNode
+struct ListNode
 {
-public:
     int data;
-    ListNode *next;
-    ListNode *prev;
+    struct ListNode *next;
+    struct ListNode *prev;
 
     ListNode(int val)
     {
@@ -16,72 +15,72 @@ public:
     }
 };
 
-class solution
+struct ListNode *reverse(struct ListNode *head)
 {
-public:
-    ListNode *reverseList(ListNode *head)
-    {
-        ListNode *prev = nullptr;
-        ListNode *curr = head;
-        ListNode *next = curr->next;
+    struct ListNode *current = head;
+    struct ListNode *temp = NULL;
 
-        while (curr != nullptr)
-        {
-            next = curr->next;
-            curr->next = prev;
-            prev = curr;
-            curr = next;
-        }
-        return prev;
+    while (current != NULL)
+    {
+        temp = current->prev;
+        current->prev = current->next;
+        current->next = temp;
+        current = current->prev;
     }
 
-    ListNode *insertEnd(ListNode *head, int val)
+    if (temp != NULL)
     {
-        ListNode *newNode = new ListNode(val);
-
-        if (!head)
-        {
-            return newNode;
-        }
-
-        ListNode *temp = head;
-        while (temp->next)
-        {
-            temp = temp->next;
-        }
-
-        temp->next = newNode;
-
-        return head;
+        head = temp->prev;
     }
 
-    // Function to print DLL
-    void printList(ListNode *head)
+    return head;
+}
+
+struct ListNode *insertEnd(ListNode *head, int val)
+{
+    ListNode *newNode = new ListNode(val);
+
+    if (!head)
     {
-        ListNode *temp = head;
-        while (temp)
-        {
-            cout << temp->data << " <=> ";
-            temp = temp->next;
-        }
-        cout << "NULL" << endl;
+        return newNode;
     }
-};
+
+    ListNode *temp = head;
+    while (temp->next)
+    {
+        temp = temp->next;
+    }
+
+    temp->next = newNode;
+    newNode->prev = temp;
+
+    return head;
+}
+
+void printList(ListNode *head)
+{
+    ListNode *temp = head;
+    while (temp != NULL)
+    {
+        cout << temp->data << " <=> ";
+        temp = temp->next;
+    }
+    cout << "NULL" << endl;
+}
+
 int main()
 {
     ListNode *head = NULL;
-    solution s;
 
-    head = s.insertEnd(head, 1);
-    head = s.insertEnd(head, 2);
-    head = s.insertEnd(head, 3);
-    head = s.insertEnd(head, 4);
-    head = s.insertEnd(head, 5);
+    head = insertEnd(head, 1);
+    head = insertEnd(head, 2);
+    head = insertEnd(head, 3);
+    head = insertEnd(head, 4);
+    head = insertEnd(head, 5);
 
-    s.printList(head);
-    cout << "Reverse The Linked List : " << endl;
-    head = s.reverseList(head);
-    s.printList(head);
-
+    printList(head);
+    cout << "Reverse The Doubly Linked List : " << endl;
+    head = reverse(head);
+    printList(head);
     return 0;
 }
