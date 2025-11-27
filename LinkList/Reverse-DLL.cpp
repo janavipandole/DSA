@@ -29,9 +29,7 @@ struct ListNode *reverse(struct ListNode *head)
     }
 
     if (temp != NULL)
-    {
         head = temp->prev;
-    }
 
     return head;
 }
