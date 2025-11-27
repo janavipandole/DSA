@@ -32,7 +32,7 @@ struct ListNode *reverse(struct ListNode *head)
         head = temp->prev;
 
     return head;
-}
+};
 
 struct ListNode *insertEnd(ListNode *head, int val)
 {
