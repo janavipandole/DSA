@@ -79,10 +79,10 @@ int main()
     ListNode *head = NULL;
     solution s;
 
+    head2 = s.insertEnd(head2, 1);
+    head2 = s.insertEnd(head2, 2);
+    head2 = s.insertEnd(head2, 3);
     head2 = s.insertEnd(head2, 4);
-    head2 = s.insertEnd(head2, 5);
-    head2 = s.insertEnd(head2, 9);
-    head2 = s.insertEnd(head2, 9);
 
     cout << "Odd Even Linked List : " << endl;
 
