@@ -11,15 +11,8 @@ public:
         while (i < target.size() and x <= n)
         {
             v.push_back("Push");
-            if (target[i] == x)
-            {
-
-                i++;
-            }
-            else
-            {
-                v.push_back("Pop");
-            }
+            if (target[i] == x) i++;
+            else v.push_back("Pop");
             x++;
         }
         return v;
