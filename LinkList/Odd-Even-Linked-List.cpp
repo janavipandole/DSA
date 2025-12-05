@@ -18,7 +18,41 @@ public:
 class solution
 {
 public:
-    ListNode *oddEvenList(ListNode *head)
+    ListNode *oddEvenListBrute(ListNode *head)
+    {
+        if (head == NULL || head->next == NULL)
+        {
+            return head;
+        }
+
+        ListNode *temp = head;
+        vector<int> nums;
+        while (temp != NULL && temp->next != NULL)
+        {
+            nums.push_back(temp->val);
+            temp = temp->next->next;
+        }
+        if(temp) nums.push_back(temp->val);
+
+
+        temp = head->next;
+        while (temp != NULL && temp->next != NULL)
+        {
+            nums.push_back(temp->val);
+            temp = temp->next->next;
+        }
+        if(temp) nums.push_back(temp->val);
+
+        temp = head;
+        int i = 0;
+        while (temp)
+        {
+            temp->val = nums[i++];
+            temp = temp->next;
+        }
+        return head;
+    }
+    ListNode *oddEvenListOptimal(ListNode *head)
     {
         if (head == NULL || head->next == NULL)
         {
@@ -75,22 +109,23 @@ public:
 };
 int main()
 {
-    ListNode *head2 = NULL;
     ListNode *head = NULL;
     solution s;
 
-    head2 = s.insertEnd(head2, 1);
-    head2 = s.insertEnd(head2, 2);
-    head2 = s.insertEnd(head2, 3);
-    head2 = s.insertEnd(head2, 4);
+    head = s.insertEnd(head, 1);
+    head = s.insertEnd(head, 2);
+    head = s.insertEnd(head, 3);
+    head = s.insertEnd(head, 4);
+    head = s.insertEnd(head, 5);
+    head = s.insertEnd(head, 6);
 
     cout << "Odd Even Linked List : " << endl;
 
     cout << "Original Linked List : " << endl;
-    s.printList(head2);
+    s.printList(head);
 
     cout << "After Odd Even Linked List :  ";
-    head = s.oddEvenList(head2);
+    head = s.oddEvenListBrute(head);
 
     s.printList(head);
     return 0;
