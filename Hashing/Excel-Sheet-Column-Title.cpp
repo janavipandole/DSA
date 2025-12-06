@@ -8,7 +8,6 @@ public:
     string convertToTitle(int columnNumber)
     {
         string ans;
-
         while (columnNumber){
             columnNumber--;
             int digit = columnNumber % 26;
