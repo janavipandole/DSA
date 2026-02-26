@@ -26,7 +26,7 @@ int main()
 {
     Solution s;
     vector<int> nums = {16, 17, 4, 3, 5, 2};
-    cout << "Array Leader : " << endl;
+    cout << "Leaders in an array : " << endl;
     vector<int> ans = s.leaders(nums);
     for (auto num : ans)
     {
