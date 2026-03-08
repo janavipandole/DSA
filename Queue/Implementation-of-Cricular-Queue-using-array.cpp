@@ -1,21 +1,25 @@
 #include <iostream>
-#include <vector>
 using namespace std;
 
 class cricular_queue
 {
-    int capcity = 4;
-    vector<int> nums{capcity, -1};
-    int sizeNums = 0;
-    int start = 0;
-    int end = -1;
+    int *nums;
+    int sizeNums, start, end, capcity;
 
 public:
+    cricular_queue(int size)
+    {
+        capcity = size;
+        nums = new int[capcity];
+        sizeNums = 0;
+        start = 0;
+        end = -1;
+    }
     void push(int val)
     {
         if (sizeNums == capcity)
         {
-            cout << "Circular Queue is filled : " << endl;
+            cout << "Circular Queue FULL : " << endl;
             return;
         }
         end = (end + 1) % capcity;
@@ -51,7 +55,7 @@ public:
 
 int main()
 {
-    cricular_queue cq;
+    cricular_queue cq(4);
     cout << "Implementation of Cricular Queue using array : " << endl;
     cq.push(1);
     cq.push(2);
