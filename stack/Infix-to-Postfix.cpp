@@ -62,7 +62,7 @@ public:
 int main()
 {
     Solution s;
-    string str = "(a+b)*(c+d)";
+    string str = "a*(b+c)/d";
     cout << "Infix to Postfix : " << s.infixToPostfix(str) << endl;
 
     return 0;
