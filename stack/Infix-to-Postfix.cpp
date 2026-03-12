@@ -1,21 +1,20 @@
 #include <iostream>
 #include <stack>
-#include <map>
+
 using namespace std;
 
 class Solution
 {
 public:
+    int priority(char op)
+    {
+        if (op == '^') return 3;
+        if (op == '*' || op == '/') return 2;
+        if (op == '+' || op == '-') return 1;
+        return -1;
+    }
     string infixToPostfix(string &s)
     {
-        map<char, int> priority = {
-            {'^', 3},
-            {'*', 2},
-            {'/', 2},
-            {'+', 1},
-            {'-', 1},
-        };
-
         int i = 0, n = s.size();
         string ans;
         stack<char> st;
@@ -41,7 +40,7 @@ public:
             else
             {
                 while (!st.empty() && st.top() != '(' &&
-                       (priority[s[i]] < priority[st.top()] || (priority[s[i]] == priority[st.top()] && s[i] != '^')))
+                       (priority(s[i]) < priority(st.top()) || (priority(s[i]) == priority(st.top()) && s[i] != '^')))
                 {
                     ans += st.top();
                     st.pop();

@@ -1,6 +1,5 @@
 #include <iostream>
 #include <stack>
-#include <unordered_map>
 using namespace std;
 
 class Solution
@@ -8,9 +7,12 @@ class Solution
 public:
     int priority(char op)
     {
-        if (op == '^') return 3;
-        if (op == '*' || op == '/') return 2;
-        if (op == '+' || op == '-') return 1;
+        if (op == '^')
+            return 3;
+        if (op == '*' || op == '/')
+            return 2;
+        if (op == '+' || op == '-')
+            return 1;
         return -1;
     }
     string infixToPrefix(string &s)
@@ -22,10 +24,11 @@ public:
         reverse(s.begin(), s.end());
         for (int i = 0; i < n; i++)
         {
-            if (s[i] == '(') s[i] = ')';
-            else if (s[i] == ')') s[i] = '(';
+            if (s[i] == '(')
+                s[i] = ')';
+            else if (s[i] == ')')
+                s[i] = '(';
         }
-       
 
         while (i < n)
         {
