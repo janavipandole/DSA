@@ -13,7 +13,7 @@ public:
         {
             if (isalnum(exp[i]))
             {
-                string s(1, exp[i]);
+                string s(1, exp[i]); // char → string
                 ans.push(s);
             }
             else
