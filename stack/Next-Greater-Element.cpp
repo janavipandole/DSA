@@ -3,47 +3,37 @@
 #include <vector>
 #include <algorithm>
 using namespace std;
-void NGE(int n, vector<int> &nums)
+
+vector<int> NGE(vector<int> &nums)
 {
+    int n = nums.size();
     stack<int> s;
-    vector<pair<int, int>> ans(n);
+    s.push(-1);
+    vector<int> ans(n);
 
     for (int i = n - 1; i >= 0; i--)
     {
-        while (!s.empty() && s.top() <= nums[i])
+        while (!s.empty() && s.top() <= nums[i] && s.top() != -1)
         {
             s.pop();
         }
 
-        if (s.empty())
-        {
-            ans[i] = {nums[i], -1};
-        }
-        else
-        {
-            ans[i] = {nums[i], s.top()};
-        }
+        ans[i] = s.top();
 
         s.push(nums[i]);
     }
 
-    for (auto &val : ans)
-    {
-        cout << val.first << " " << val.second << endl;
-    }
+    return ans;
 }
 int main()
 {
-    cout<<"Next Greater Element : "<<endl;
-    int n;
-    cin >> n;
-    vector<int> nums(n);
-    for (int i = 0; i < n; i++)
+    cout << "Next Greater Element : " << endl;
+    vector<int> nums = {1, 2, 3, 4};
+    vector<int> ans = NGE(nums);
+    for (auto num : ans)
     {
-        int num;
-        cin >> num;
-        nums[i] = num;
+        cout << num << " ";
     }
-    NGE(n, nums);
+    cout << endl;
     return 0;
 }
