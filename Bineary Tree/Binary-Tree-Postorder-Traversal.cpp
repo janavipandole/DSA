@@ -27,10 +27,77 @@ public:
         postOrder(root->right, ans);
         ans.push_back(root->val);
     }
-    vector<int> postorderTraversal(TreeNode *root)
+    vector<int> postorderTraversalSol1(TreeNode *root)
     {
         vector<int> ans;
         postOrder(root, ans);
+        return ans;
+    }
+    vector<int> postorderTraversalSol2(TreeNode *root)
+    {
+        vector<int> ans;
+        stack<TreeNode *> st1;
+        stack<int> st2;
+        st1.push(root);
+
+        while (!st1.empty())
+        {
+            TreeNode *node = st1.top();
+            st1.pop();
+
+            if (node->left != NULL)
+                st1.push(node->left);
+            if (node->right != NULL)
+                st1.push(node->right);
+
+            st2.push(node->val);
+        }
+
+        while (!st2.empty())
+        {
+            ans.push_back(st2.top());
+            st2.pop();
+        }
+
+        return ans;
+    }
+
+    vector<int> postorderTraversalSol3(TreeNode *root)
+    {
+        vector<int> ans;
+        stack<TreeNode *> s;
+        TreeNode *current = root;
+
+        while (current != NULL || !s.empty())
+        {
+            if (current != NULL)
+            {
+                s.push(current);
+                current = current->left;
+            }
+            else
+            {
+                TreeNode *temp = s.top()->right;
+                if (temp == NULL)
+                {
+                    temp = s.top();
+                    s.pop();
+                    ans.push_back(temp->val);
+
+                    while (!s.empty() && temp == s.top()->right)
+                    {
+                        temp = s.top();
+                        s.pop();
+                        ans.push_back(temp->val);
+                    }
+                }
+                else
+                {
+                    current = temp;
+                }
+            }
+        }
+
         return ans;
     }
 };
@@ -43,7 +110,7 @@ int main()
 
     Solution s;
     cout << "Binary Tree Postorder Traversal : " << endl;
-    vector<int> ans = s.postorderTraversal(root);
+    vector<int> ans = s.postorderTraversalSol3(root);
 
     for (auto num : ans)
     {
