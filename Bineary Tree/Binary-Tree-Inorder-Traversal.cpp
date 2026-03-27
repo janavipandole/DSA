@@ -1,4 +1,5 @@
 #include <iostream>
+#include <stack>
 using namespace std;
 
 struct TreeNode
@@ -28,10 +29,36 @@ public:
         inOrder(root->right, ans);
     }
 
-    vector<int> inorderTraversal(TreeNode *root)
+    vector<int> inorderTraversalSol1(TreeNode *root)
     {
         vector<int> ans;
         inOrder(root, ans);
+        return ans;
+    }
+    vector<int> inorderTraversalSol2(TreeNode *root)
+    {
+        vector<int> ans;
+        stack<TreeNode *> st;
+        TreeNode *node = root;
+
+        while (true)
+        {
+            if (node != NULL)
+            {
+                st.push(node);
+                node = node->left;
+            }
+            else
+            {
+                if (st.empty()) break;
+                node = st.top();
+                st.pop();
+
+                ans.push_back(node->val);
+                node = node->right;
+            }
+        }
+
         return ans;
     }
 };
@@ -43,7 +70,7 @@ int main()
 
     Solution s;
     cout << "Binary Tree Inorder Traversal : " << endl;
-    vector<int> ans = s.inorderTraversal(root);
+    vector<int> ans = s.inorderTraversalSol2(root);
 
     for (auto num : ans)
     {
