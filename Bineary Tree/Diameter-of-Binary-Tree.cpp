@@ -71,7 +71,7 @@ public:
         int maxDiameter = 0;
         maxDepth(root, maxDiameter);
 
-        return Max;
+        return maxDiameter;
     }
 };
 int main()
