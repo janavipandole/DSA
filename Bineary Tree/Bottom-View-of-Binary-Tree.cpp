@@ -66,7 +66,7 @@ int main()
 
     Solution s;
     cout << "Bottom View of Binary Tree : " << endl;
-    vector<int> ans = s.topView(root);
+    vector<int> ans = s.bottomView(root);
     for (auto num : ans)
     {
         cout << num << " ";
