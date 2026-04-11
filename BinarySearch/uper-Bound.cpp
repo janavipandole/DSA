@@ -26,7 +26,7 @@ int getTarget(vector<int> &nums, int target)
 int main()
 {
     vector<int> nums = {6, 7, 8, 9, 10};
-    int target = 9;
+    int target = 10;
     cout << "Lower Bound Build in function: " << (upper_bound(nums.begin(), nums.end(), target)) - nums.begin() << endl;
     cout << getTarget(nums, target) << endl;
     return 0;
