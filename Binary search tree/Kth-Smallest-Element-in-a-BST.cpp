@@ -40,19 +40,19 @@ public:
 };
 class Solution2 {
 public:
-    void inOrder(TreeNode *root, int &k,int &ans)
+    void inOrder(Node *root, int &k,int &ans)
     {
         if (root == nullptr)return;
 
         inOrder(root->left, k ,ans);
         if (--k == 0)
         {
-            ans = root->val;
+            ans = root-> data;
             return;
         }
         inOrder(root->right, k,ans);
     }
-    int kthSmallest(TreeNode* root, int k) {
+    int kthSmallest(Node* root, int k) {
         int ans = 0;
         int count = 0;
         inOrder(root, k, ans);
@@ -68,7 +68,7 @@ int main()
 
     root->left->right = new Node(2);
 
-    Solution s;
+    Solution2 s;
     cout << "Kth Smallest Element in a BST : " << s.kthSmallest(root, 2) << endl;
     return 0;
 }
