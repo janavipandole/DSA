@@ -13,7 +13,7 @@ struct Node
         left = right = nullptr;
     }
 };
-class Solution
+class Solution1
 {
 public:
     void preOrder(Node *root, priority_queue<int> &maxHeap, int k)
@@ -36,6 +36,27 @@ public:
         priority_queue<int> maxHeap;
         preOrder(root, maxHeap, k);
         return maxHeap.top();
+    }
+};
+class Solution2 {
+public:
+    void inOrder(TreeNode *root, int &k,int &ans)
+    {
+        if (root == nullptr)return;
+
+        inOrder(root->left, k ,ans);
+        if (--k == 0)
+        {
+            ans = root->val;
+            return;
+        }
+        inOrder(root->right, k,ans);
+    }
+    int kthSmallest(TreeNode* root, int k) {
+        int ans = 0;
+        int count = 0;
+        inOrder(root, k, ans);
+        return ans;
     }
 };
 int main()
