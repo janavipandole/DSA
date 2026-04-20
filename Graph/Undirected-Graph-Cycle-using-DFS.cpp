@@ -5,29 +5,15 @@ using namespace std;
 class Solution
 {
 public:
-    bool bfs(int src, vector<int> adjList[], vector<int> &visit)
+    bool dfs(int node, int parent, vector<int> adjList[], vector<int> &visit)
     {
-        visit[src] = 1;
-        queue<pair<int, int>> q;
-        q.push({src, -1});
-
-        while (!q.empty())
+        visit[node] = 1;
+        for (auto adjNode : adjList[node])
         {
-            int node = q.front().first;
-            int parent = q.front().second;
-            q.pop();
-
-            for (auto num : adjList[node])
+            if (!visit[adjNode])
             {
-                if (!visit[num])
-                {
-                    visit[num] = 1;
-                    q.push({num, node});
-                }
-                else if (parent != num)
-                {
-                    return true;
-                }
+                if (dfs(adjNode, node, adjList, visit)) return true;
+                else if(adjNode != parent) return true;
             }
         }
         return false;
@@ -49,7 +35,7 @@ public:
         {
             if (!visit[i])
             {
-                if (bfs(i, adjList, visit))
+                if (dfs(i, -1, adjList, visit))
                 {
                     return true;
                 }
@@ -63,6 +49,6 @@ int main()
     Solution s;
     vector<vector<int>> edges = {{0, 1}, {0, 2}, {1, 2}, {2, 3}};
     int n = 4;
-    cout << "Undirected Graph Cycle : " << s.isCycle(n, edges) << endl;
+    cout << "Undirected Graph Cycle using DFS : " << s.isCycle(n, edges) << endl;
     return 0;
 }

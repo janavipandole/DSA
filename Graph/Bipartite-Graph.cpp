@@ -6,7 +6,6 @@ class Solution {
 private:
     bool DFS(vector<vector<int>> &graph, vector<int> &visited, int index, int color)
     {
-        if(index >= graph.size()) return true;
         visited[index] = color;
     
         for (auto it : graph[index])
