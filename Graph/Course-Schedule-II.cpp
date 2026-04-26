@@ -6,9 +6,9 @@ using namespace std;
 class Solution
 {
 public:
-    bool canFinish(int numCourses, vector<vector<int>>& prerequisites)
+    vector<int> findOrder(int numCourses, vector<vector<int>> &prerequisites)
     {
-        int count = 0;
+        vector<int> answer;
         vector<int> adjList[numCourses];
         queue<int> q;
         vector<int> inDegree(numCourses, 0);
@@ -32,7 +32,7 @@ public:
         {
             int node = q.front();
             q.pop();
-            count++;
+            answer.push_back(node);
 
             for (auto it : adjList[node])
             {
@@ -40,17 +40,32 @@ public:
                 if (inDegree[it] == 0) q.push(it);
             }
         }
-        if (count == numCourses) return true;
-        return false;
+        if (answer.size() != numCourses) return {};
+        int i = 0;
+        int j = numCourses - 1;
+
+        while(i<j){
+            swap(answer[i],answer[j]);
+            i++;
+            j--;
+        }
+
+        return answer;
     }
 };
 
 int main()
 {
     Solution s;
-    vector<vector<int>> edges = {{1, 0}, {0, 1}};
+    vector<vector<int>> edges = {{1, 0}};
     int V = 2;
-    cout << "Course Schedule I : " << s.canFinish(V, edges) << endl;
+    cout << "Course Schedule II : " << endl;
+    vector<int> answer = s.findOrder(V, edges);
+    for (auto ans : answer)
+    {
+        cout << ans << " ";
+    }
+    cout << endl;
 
     return 0;
 }
