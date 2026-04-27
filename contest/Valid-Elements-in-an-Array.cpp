@@ -12,21 +12,21 @@ public:
         int rightMax = -1;
         vector<int> answer;
 
-        for (int i = 1; i < n - 1; i++)
+        for (int i = 0; i < n; i++)
         {
-            if (nums[i - 1] >= nums[i] || nums[i] <= leftMax)
+            if (nums[i] <= leftMax)
             {
-                leftMax = max(leftMax, nums[i - 1]);
                 left[i] = leftMax;
             }
+            leftMax = max(leftMax, nums[i]);
         }
-        for (int i = n - 2; i > 0; i--)
+        for (int i = n - 1; i >= 0; i--)
         {
-            if (nums[i] <= nums[i + 1] || nums[i] <= rightMax)
+            if (nums[i] <= rightMax)
             {
-                rightMax = max(rightMax, nums[i + 1]);
                 right[i] = rightMax;
             }
+            rightMax = max(rightMax, nums[i]);
         }
         for (int i = 0; i < n; i++)
         {
@@ -44,7 +44,7 @@ int main()
 {
     Solution s;
     vector<int> nums = {10, 10, 10, 10};
-    cout << "Total Waviness of Numbers in Range I : " << endl;
+    cout << "Valid Elements in an Array : " << endl;
     vector<int> answer = s.findValidElements(nums);
     for (auto num : answer)
     {
