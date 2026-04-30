@@ -16,37 +16,20 @@ struct TreeNode
 class Solution
 {
 public:
-    bool isLeaf(TreeNode *root)
-    {
-        if (root->left == NULL && root->right == NULL)
-        {
-            return true;
-        }
-        return false;
-    }
-    void preOrder(TreeNode *root, int &sum)
-    {
-        if (root == nullptr) return;
-
-        if (isLeaf(root))
-        {
-            sum += root->val;
-            return;
-        }
-
-        preOrder(root->left, sum);
-        preOrder(root->right, sum);
-    }
     int sumOfLeftLeaves(TreeNode *root)
     {
+        if (root == NULL) return 0;
+
+        int sum = 0;
+
+        if (root->left && root->left->left == NULL && root->left->right == NULL)
         {
-            int sum = 0;
-            if (!root || isLeaf(root)) return sum;
-
-            preOrder(root, sum);
-
-            return sum;
+            sum += root->left->val;
         }
+
+        sum += sumOfLeftLeaves(root->left);
+        sum += sumOfLeftLeaves(root->right);
+        return sum;
     }
 };
 
@@ -55,7 +38,7 @@ int main()
     struct TreeNode *root = new TreeNode(3);
 
     root->left = new TreeNode(9);
-   
+
     root->right = new TreeNode(20);
     root->right->left = new TreeNode(15);
     root->right->right = new TreeNode(7);
