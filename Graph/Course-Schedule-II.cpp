@@ -15,7 +15,7 @@ public:
 
         for (auto prerequisite : prerequisites)
         {
-            adjList[prerequisite[0]].push_back(prerequisite[1]);
+            adjList[prerequisite[1]].push_back(prerequisite[0]);
         }
 
         for (int i = 0; i < numCourses; i++)
@@ -40,17 +40,8 @@ public:
                 if (inDegree[it] == 0) q.push(it);
             }
         }
-        if (answer.size() != numCourses) return {};
-        int i = 0;
-        int j = numCourses - 1;
-
-        while(i<j){
-            swap(answer[i],answer[j]);
-            i++;
-            j--;
-        }
-
-        return answer;
+        if (answer.size() == numCourses) return answer;
+        return {};
     }
 };
 
