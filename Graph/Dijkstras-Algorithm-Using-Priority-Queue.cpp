@@ -39,13 +39,6 @@ public:
                 }
             }
         }
-        for (int i = 0; i < V; i++)
-        {
-            if (distance[i] == 1e9)
-            {
-                distance[i] = -1;
-            }
-        }
         return distance;
     }
 };
