@@ -16,17 +16,43 @@ struct TreeNode
 class Solution
 {
 public:
-    int maxDepth(TreeNode *root)
+    int maxDepthRec(TreeNode *root)
     {
         if (root == NULL)
         {
             return 0;
         }
 
-        int l = maxDepth(root->left);
-        int r = maxDepth(root->right);
+        int l = maxDepthRec(root->left);
+        int r = maxDepthRec(root->right);
 
         return 1 + max(l, r);
+    }
+    int maxDepthLevelOrder(TreeNode *root)
+    {
+        int level = 0;
+        queue<TreeNode *> q;
+
+        q.push(root);
+
+      
+        while (!q.empty())
+        {
+            int n = q.size();
+
+            for (int i = 0; i < n; i++)
+            {
+                TreeNode *node = q.front();
+                q.pop();
+
+                if (node->left != NULL) q.push(node->left);
+                if (node->right != NULL) q.push(node->right);
+            }
+            level++;
+        
+        }
+
+        return level;
     }
 };
 int main()
@@ -36,7 +62,7 @@ int main()
     root->right->left = new TreeNode(3);
 
     Solution s;
-    cout << "Maximum Depth of Binary Tree : " << s.maxDepth(root) << endl;
+    cout << "Maximum Depth of Binary Tree : " << s.maxDepthLevelOrder(root) << endl;
 
     return 0;
 }
