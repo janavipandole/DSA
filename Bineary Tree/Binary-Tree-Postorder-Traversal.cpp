@@ -45,10 +45,8 @@ public:
             TreeNode *node = st1.top();
             st1.pop();
 
-            if (node->left != NULL)
-                st1.push(node->left);
-            if (node->right != NULL)
-                st1.push(node->right);
+            if (node->left != NULL) st1.push(node->left);
+            if (node->right != NULL) st1.push(node->right);
 
             st2.push(node->val);
         }
@@ -100,6 +98,28 @@ public:
 
         return ans;
     }
+    vector<int> postorderTraversalSol4(TreeNode *root)
+    {
+        vector<int> ans;
+        if (root == nullptr) return ans;
+        
+        stack<TreeNode*> st;
+        st.push(root);
+
+        while (!st.empty())
+        {
+            TreeNode *node = st.top();
+            st.pop();
+
+            ans.push_back(node->val);
+
+            if (node->left) st.push(node->left);
+            if (node->right) st.push(node->right);
+        }
+        reverse(ans.begin(),ans.end());
+        return ans;
+    }
+
 };
 
 int main()
@@ -110,7 +130,7 @@ int main()
 
     Solution s;
     cout << "Binary Tree Postorder Traversal : " << endl;
-    vector<int> ans = s.postorderTraversalSol3(root);
+    vector<int> ans = s.postorderTraversalSol4(root);
 
     for (auto num : ans)
     {
