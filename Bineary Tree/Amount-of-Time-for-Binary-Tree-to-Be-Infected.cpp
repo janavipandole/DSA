@@ -50,9 +50,7 @@ public:
             return true;
         }
 
-        if (getStartPointer(root->left, start, node) || getStartPointer(root->right, start, node)) return true;
-
-        return false;
+        return getStartPointer(root->left, start, node) || getStartPointer(root->right, start, node);
     }
     int amountOfTime(TreeNode *root, int start)
     {
@@ -63,8 +61,10 @@ public:
 
         TreeNode *node;
         getStartPointer(root, start, node);
+
         queue<TreeNode *> q;
         q.push(node);
+        
         unordered_map<TreeNode *, bool> visited;
         visited[node] = true;
 
