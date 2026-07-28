@@ -43,7 +43,7 @@ public:
         int leftHeight = findleftHeight(root);
         int rightHeight = findrightHeight(root);
 
-        if (leftHeight == rightHeight)return (1<<leftHeight) - 1;
+        if (leftHeight == rightHeight) return (1<<leftHeight) - 1;
 
         return 1 + countNodes(root->left) + countNodes(root->right);
     }
